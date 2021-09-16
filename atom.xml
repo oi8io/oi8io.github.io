@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">一知半解</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2021-03-18T11:57:21&#43;08:00</updated>
+    <updated>2021-09-16T20:28:22&#43;08:00</updated>
     <id>/</id>
     <link rel="alternate" type="text/html" href="/" />
     <link rel="self" type="application/atom&#43;xml" href="/atom.xml" />
@@ -24,7 +24,7 @@
             <published>2020-07-28T11:22:51&#43;08:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">最近真是为了笔记犯愁，平时零零散散记录了笔记，没时间整理，也没时间看，主要是也没有地方看。主要原因是我采用Quiver作为平时记笔记的软件，但是不支持手持设备同步。最近准备整理整理笔记，把笔记发到博客中。由于很久之前采用hexo，而且自己很久不维护了，导致昨天生成文件的时候没有html产生，用debug也看不出毛病。随即怒换hugo。hugo发布和主题都采用git submodule功能，顺便记录之。
@@ -159,7 +159,7 @@ git rm --cached themes/ananke
             <published>2015-03-29T12:43:37&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">一直用CentOS 6 习惯了，一下没适应过来。防火墙配置后执行service iptables save 出现&amp;quot;Failed to restart iptables.service: Unit iptables.service failed to load: No such file or directory.&amp;ldquo;错误,在CentOS 7或RHEL 7或Fedora中防火墙由firewalld来管理，当然你可以还原传统的管理方式。或则使用新的命令进行管理。 假如采用传统请执行一下命令：
@@ -216,7 +216,7 @@ service iptables [stop|start|restart]
             <published>2015-03-29T12:27:48&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">在REHL系搭建pptp vpn服务器 连接的时候出现（619等错误）查看系统日志[cat /var/log/messages |grep pptpd]后发现每次连接失败都会出现以下日志内容:
@@ -277,7 +277,7 @@ sudo arp -d -a&lt;/pre&gt;
             <published>2015-03-29T12:16:17&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">用vpn已经有很多年，然而一直因为懒惰原因，所以一直都没有写关于如何搭建vpn服务器的文章，今年兴致所致，分享一下个人搭建vpn server的过程，写的简陋，请勿拍砖。vpn的使用非常广泛，可谓大多网虫和技术股都需要用到的东西，不过看下文之前请先看看自己的服务器是否支持pptp方式的vpn服务器，具体请执行命令
@@ -395,7 +395,7 @@ chkconfig pptpd on
             <published>2015-03-24T14:39:44&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">如何解决BAIDU SITEMAP GENERATOR插件出现 ILLEGAL STRING OFFSET LC_IS_UPDATE_SITEMAP_WHEN_POST问题呢？当发布文章的时候，出现了这个，于是便有了下文。 ILLEGAL STRING OFFSET 这个错误请看鸟哥的《PHP5.4更新注意点》
@@ -449,7 +449,7 @@ wp_schedule_single_event(time()+10, ‘do_baidu_sitemap_by_post’);
             <published>2014-05-31T20:02:05&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">久闻sublime text editor 是个神器，其实平时很少用，今天闲来无事儿，特地安装尝试一下，果断各种黑
@@ -686,7 +686,7 @@ ctrl+`/[View] &amp;gt; [Show Console]
             <published>2014-04-30T18:05:25&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">plupload算是一个好东西（用过的人都知道），用起来不好不坏的，当然每个插件在使用过程中未必跟业务完全耦合，就看你修改插件让其符合业务还是业务适应插件，这里对plupload作一个简单的介绍和分享一些个人心得。
@@ -868,7 +868,7 @@ plupload特性  Plupload使用jQuery的组件做为选择文件和上传文件�
             <published>2014-04-24T23:03:11&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">进了Windows 8 再一次进入Fedora后，出现unable to mount NTFS partition fedora的错误，其实是Windows 8 快速启动造成的。关闭即可。具体操作如下：
@@ -910,7 +910,7 @@ plupload特性  Plupload使用jQuery的组件做为选择文件和上传文件�
             <published>2014-04-24T22:52:57&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">网上找了许多办法都行不通，经过半天的折腾。终于弄出来下面能够实时显示当前时间
@@ -966,7 +966,7 @@ for($i=1; $i&amp;lt;=10; $i++)
             <published>2014-04-24T22:42:47&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">作为一个web开发人员，开发过程中肯定有很多项目需要分配不同的域名来访问，这样避免一个localhost不够用和避免加端口各种麻烦，以及子目录超级麻烦等问题。那么很多时候需要在开发环境上门绑定多个域名。假如是一个团队开发。那么每个人都去修改hosts是一件很悲剧的事情，那么你需要的就是一台内部的dns服务器。其实本人对理论这块了解甚少，所以重在实用。
@@ -1115,7 +1115,7 @@ vkilo.ryan.com
             <published>2014-04-11T11:20:40&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">遍历当前目录及子目录。把所有的文件转换编码到UTF-8
@@ -1194,7 +1194,7 @@ function tree($directory)
             <published>2013-11-08T00:19:04&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">最近各种工作没有状态，本来很想写点心情日志啥的。可惜文笔有限制，就当在这里抱怨一下。MySQL 编译安装各种疼。顺便整理下笔记，不说了。都是泪。
@@ -1338,7 +1338,7 @@ set storage_engine=MYISAM&lt;/pre&gt;
             <published>2013-08-11T01:02:57&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">top命令基本用法 显示系统当前的进程和其他状况； top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止. 比较准确的说,top命令提供了实时的对系统处理器的状态监视.它将显示系统中CPU最“敏感”的任务列表.该命令可以按CPU使用.内存使用和执行时间对任务进行排序；而且该命令的很多特性都可以通过交互式命令或者在个人定制文件中进行设定.
@@ -1684,7 +1684,7 @@ i 使top不显示任何闲置或者僵死进程。&lt;/p&gt;
             <published>2013-08-03T00:42:13&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">此处省略无数字
@@ -2084,7 +2084,7 @@ $Ally-&amp;gt;beAttacked(&#39;ORC2&#39;);&lt;/pre&gt;
             <published>2013-07-21T00:24:19&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">yum remove sendmail yum install dovecot yum install postfix yum install cyrus-sasl cyrus-sasl-devel cyrus-sasl-gssapi cyrus-sasl-md5 cyrus-sasl-plain #start dovecot config #file=/etc/dovecot.conf protocols = imap imaps pop3 pop3s #line 20 default_mail_env = maildir:/home/vmail/%d/%n #line205 first_valid_uid = 89 #line 328 ssl_cert_file = /etc/postfix/ssl/smtpd.crt #line 91 ssl_key_file = /etc/postfix/ssl/smtpd.</summary>
@@ -2272,7 +2272,7 @@ postmap -q john@example.com mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf&lt;
             <published>2013-07-19T20:43:58&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">首先到官方http://msdn.microsoft.com/en-us/sqlserver/ff657782.aspx 下载相应的驱动。 然后windows为例
@@ -2331,7 +2331,7 @@ $products= $getProducts-&amp;gt;fetchAll(PDO::FETCH_ASSOC);&lt;/pre&gt;&lt;block
             <published>2013-07-07T14:30:35&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">:set nu 设置行号
@@ -2465,7 +2465,7 @@ D:删除光标所在到行首的
             <published>2013-07-04T10:46:51&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Start Command Prompt: 1. Hit the combination key of Windows+R (or start run window) 2. Type cmd and hit enter. 3. This will open the command prompt
@@ -2525,7 +2525,7 @@ Do not kill that process! If you do you will get a blue screen of death (BSOD). 
             <published>2013-07-03T03:05:21&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">文章关闭标签函数
@@ -2632,7 +2632,7 @@ function CloseTags($html) { // strip fraction of open or close tag from end (e.g
             <published>2013-06-23T13:51:05&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">因为本人没有android设备，更准确说，我没有智能手持设备，故对android设备我果断不熟，每次刷机以及刷机还有刷机都要花良久时间方可完事儿，这里分享一下如何root Samsung I9100 Galaxy S II 获取root权限 设备上面刷的是官方4.1.2的rom，折腾良久未果，其中原因不说的好，因为存储卡不能用，所以确定改用adb命令来root。开始
@@ -2727,7 +2727,7 @@ adb sideload CWM-SuperSU-v0.97.zip 这里确保CWM-SuperSU-v0.97.zip 与adb.exe�
             <published>2013-06-14T23:55:11&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">function setErrorReporting() { //从配置文件读取当前是否为开发环境 if (DEV_ENV == true) { ini_set(&#34;error_reprorting&#34;, &#34;E_ALL &amp;amp; ~E_NOTICE&#34;); ini_set(&#34;display_errors&#34;, &#34;on&#34;); } else { error_reporting(E_ALL); ini_set(&#39;display_errors&#39;, &#39;Off&#39;); ini_set(&#34;log_errors&#34; , &#34;On&#34;); ini_set(&#39;error_log&#39;, &#39;/var/log/phperror.log&#39;); } } error_reporting() 设置 PHP 的报错级别并返回当前级别。
@@ -2784,7 +2784,7 @@ adb sideload CWM-SuperSU-v0.97.zip 这里确保CWM-SuperSU-v0.97.zip 与adb.exe�
             <published>2013-06-09T19:10:36&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">创建型模式  抽象工厂模式(Abstract factory pattern): 提供一个接口, 用于创建相关或依赖对象的家族, 而不需要指定具体类. 生成器模式(Builder pattern): 使用生成器模式封装一个产品的构造过程, 并允许按步骤构造. 将一个复杂对象的构建与它的表示分离, 使得同样的构建过程可以创建不同的表示. 工厂模式(factory method pattern): 定义了一个创建对象的接口, 但由子类决定要实例化的类是哪一个. 工厂方法让类把实例化推迟到子类. 原型模式(prototype pattern): 当创建给定类的实例过程很昂贵或很复杂时, 就使用原形模式. 单例模式(Singleton pattern): 确保一个类只有一个实例, 并提供全局访问点. 多例模式(Multition pattern): 在一个解决方案中结合两个或多个模式, 以解决一般或重复发生的问题.  结构型模式  适配器模式(Adapter pattern): 将一个类的接口, 转换成客户期望的另一个接口. 适配器让原本接口不兼容的类可以合作无间. 对象适配器使用组合, 类适配器使用多重继承. 桥接模式(Bridge pattern): 使用桥接模式通过将实现和抽象放在两个不同的类层次中而使它们可以独立改变.</summary>
@@ -2862,7 +2862,7 @@ adb sideload CWM-SuperSU-v0.97.zip 这里确保CWM-SuperSU-v0.97.zip 与adb.exe�
             <published>2013-05-14T23:30:38&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例类的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统资源。如果希望在系统中某个类的对象只能存在一个，单例模式是最好的解决方案。 上面的话来自百度。我个人的理解就是只能是实例化一次，如DB类等。
@@ -2940,7 +2940,7 @@ echo Singleton::getInstance()-&amp;gt;aa();&lt;/pre&gt;
             <published>2013-05-14T23:12:49&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">听闻Nginx有很多优点，我不知道。你也许知道。下面简述安装过程。Mac下编译安装Nginx需要有好多支持库，不过我默认最简单的安装，其他扩展我也用不到。开始
@@ -3027,7 +3027,7 @@ nginx -s reload&lt;/pre&gt;
             <published>2013-05-14T22:49:48&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">直入主题。当然安装Redis方法不唯一。我这里讲源码编译方式。
@@ -3115,7 +3115,7 @@ echo $redis-&amp;gt;get(&#39;test&#39;);&lt;/pre&gt;
             <published>2013-05-14T21:29:19&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">在mac下面如何安装MongoDB呢，其实方法很简单。按照官方的三种方法安装就可以了。我这里是针对PHP的安装。多了一个PHP的MongoDB扩展安装。
@@ -3194,7 +3194,7 @@ $mongo = new Mongo(&#34;mongodb://localhost:27017&#34;,array(&#34;connect&#34;=&
             <published>2013-02-24T18:02:06&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">上次我拿iPhone准备登陆终端进行操作的时候发现我的root密码被修改过，但是很久没有登陆过了。于是自己改成什么密码都忘记了。最开始准备重新刷机，感觉太麻烦，刷机之后还要重新越狱，有很多软件又要重新安装和配置。
@@ -3248,7 +3248,7 @@ $mongo = new Mongo(&#34;mongodb://localhost:27017&#34;,array(&#34;connect&#34;=&
             <published>2013-02-24T17:35:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">玩VPS的人都知道，需要远程管理系统以及远程文件上传与下载。有时候操作iPhone的时候，是可以通过WiFi来操作的，但是那个时候我还没有安装WiFi设备，故淘汰，于是就想方设法通过USB来实现。
@@ -3368,7 +3368,7 @@ lport 表示本地端口，iport 表示iPhone等IOS设备端口。
             <published>2013-02-24T16:01:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">用Cydia安装软件 出现dpkg return code(1)错误解决办法  用工具这里就不多说了。不过推荐使用SSH访问IOS的办法。这里的其实iTool之类的比较方便。
@@ -3439,7 +3439,7 @@ PS:
             <published>2013-02-24T14:59:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">最近因为一个打印的页面在Chrome字体忽大忽小，错位很严重，其他的浏览器正常；于是我拿到我电脑上一看是正常的，于是对比一下两台电脑，我用的版本是英文版，显示正常。中文版本就有问题，我因为对CSS不是很感冒，我以为是默认字体的问题，于是我把英文版的字体配置与中文版本一致，但是结果我的英文版Chrome依然正常。于是我做了个艰难的决定，这肯定Chrome中文版本与英文版的区别。
@@ -3514,7 +3514,7 @@ html{-webkit-text-size-adjust: none;} /&lt;em&gt;也可以用全局的，但是�
             <published>2012-04-30T15:43:38&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">话说很久以前看到goagent 翻墙的教程，折腾一番，后面因为不知道啥原因，就一直都木有用了。然后就把所有的都忘记了。现在重抄旧业，翻出来折腾一番。在翻墙软件中，最好的翻墙软件是goagent了，主要针对国内的宽带问题，速度依然猫猫快，然而vpn也很难做到这一点。通过goagent上twitter，facebook，youtube 都灰常流畅。其他vpn啥的用起来是各种掉线，各种不爽，当然我用的是免费的,有一点就是个goagent是浏览器端的，而vpn是整个系统的。
@@ -3601,7 +3601,7 @@ html{-webkit-text-size-adjust: none;} /&lt;em&gt;也可以用全局的，但是�
             <published>2012-04-18T14:16:30&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">public function executeShow(sfWebRequest $request) { $this-category = Doctrine_Core::getTable(&#39;Category&#39;)-find(array($request-getParameter(&#39;id&#39;))); $this-forward404Unless($this-category); $this-pager=new sfDoctrinePager(&#39;Content&#39;, 1); $q=Doctrine::getTable(&#39;Content&#39;) -createQuery(&#39;c&#39;) -where(&#39;c.category_id=?&#39;,array($this-category-getId())); $this-pager-setQuery($q); if($request-getParameter(&#39;page&#39;)) { $this-pager-setPage($request-getParameter(&#39;page&#39;)); } $this-pager-init(); }  getResults() as $record):?* getTitle();?  </summary>
@@ -3659,7 +3659,7 @@ html{-webkit-text-size-adjust: none;} /&lt;em&gt;也可以用全局的，但是�
             <published>2012-04-11T13:30:09&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">symfony里面用到yaml貌似比较多，先来唠叨几句,这里关于yaml是个什么东东，yaml干什么用的，我就不说了。由于yaml格式要求相当的严格，因此这里顺便说说yaml 的一些注意事项：
@@ -3800,7 +3800,7 @@ author: { type: string(255), notnull: false }
             <published>2012-04-07T11:50:28&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">zend studio 以及aptana 是干啥用的我这里就不多嘴了。
@@ -3878,7 +3878,7 @@ zend studio 9 与aptana 3离线整合的办法  首先打开：http://download.a
             <published>2012-04-05T15:29:56&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">前段时间折腾zend framework ，然后访问目录默认并非网站的根目录，甚是郁闷；接下来symfony也是如此。假如我用的是虚拟主机，那么应用程序根目录肯定是入口，访问的时候不会再带一个web啥的跟到后面怪难看了。
@@ -3958,7 +3958,7 @@ zend studio 9 与aptana 3离线整合的办法  首先打开：http://download.a
             <published>2012-04-04T15:17:32&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">symfony 闲话  对于php我也就是能看懂一点代码，要我写一个留言板，里面加些杂七杂八的东西（如：ajax,json，jquery,缓存，模板，MVC）的话可能半年的时间不知道弄不弄的出来。因为这些东西只是看起来面熟，不知道是干啥用的。上帝，请原谅我的无知。最近闲来无事，到说听闻php框架可以不需要20分钟就能完成一个很牛X的东西，我就琢磨着，以前也没有做过啥玩意儿，出于好奇，开始了symfony的学习，我这人有一个缺点，就是做事有头无尾，开始是激情和调子都比较高，不过被他们折腾的死去活来的时候就有放弃的思想；这次我对自己提出点希望，就是希望能坚持到底。多嘴完毕，just do it.
@@ -4038,7 +4038,7 @@ NameVirtualHost *:81
             <published>2012-02-21T20:45:32&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">话说这是深圳市德科科技有限公司的面试题目，住的是高楼，由于手机问题，结果走错地方了（面试的时候），心里甚是尴尬。完事了之后我内心是灰常的纠结。学习web有N年了，但是一些简单的东西都要借助网络或者是工具书。来这里折腾了好多天了都没有找到一份适合自己的工作。加之发骚，身体灰常不适。每天的生活就是去网吧投简历，然后等待电话通知面试。在找工作这一块还真不是我的强项。应聘的时候老是被一些很纠结的问题给把自己整out了。好久没有更新日志了。顺道来发泄下。发泄完毕。接下来说下面试题目的解决过程。
@@ -4138,7 +4138,7 @@ content.style.width = (w-160) + &amp;ldquo;px&amp;rdquo;;&amp;gt;
             <published>2011-11-07T10:50:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">我系统是win 7 sp1 x86，下载了个小软件却界面上全是问号（就是这个“？”，一个很讨嫌的家伙）。百思不得其解，因为设置上的话通常我配置都没有问题的，而且用了1年多了都没有问题，找了良久，未果。
@@ -4266,7 +4266,7 @@ content.style.width = (w-160) + &amp;ldquo;px&amp;rdquo;;&amp;gt;
             <published>2011-05-04T12:25:40&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Ubuntu 下wordpress 发布工具貌似也特别多，但是个人最喜欢的应该是**ScribeFire Blog Editor**这个**firefox **插件，功能十分强大**。推荐使用。 **使用界面非常友好，字体格式设置功能也比较多。能直接插入图片并上传，支持设置分类、标签。修改已经发布文章，支持定时发布，支持自定义设置Pings 。如果你不小心关闭了浏览器，你写的东西不会丢失。 **ScribeFire Blog Editor **插件添加地址：https://addons.mozilla.org/zh-CN/firefox/search/?q=ScribeFire+Blog+Editor&amp;amp;cat=all&amp;amp;lver=any&amp;amp;pid=1&amp;amp;sort=&amp;amp;pp=20&amp;amp;lup=&amp;amp;advanced=</summary>
@@ -4324,7 +4324,7 @@ content.style.width = (w-160) + &amp;ldquo;px&amp;rdquo;;&amp;gt;
             <published>2011-04-28T22:39:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">最新泄露版本来看。距离发布windows 8 beta（windows 8 beta1)版的时候就快要到了，一起期待windows 8 给我们带来的惊喜。 windows 8版本发布顺序：M1 / M2 / M3 / Beta1 / Beta2 / RC / RTM
@@ -4616,7 +4616,7 @@ content.style.width = (w-160) + &amp;ldquo;px&amp;rdquo;;&amp;gt;
             <published>2011-04-28T00:00:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">假如你安装并激活了 Windows 8 M1 Build 7850 或者 Windows 8 M2 (Pre-M3) Build 8955, 或许很多人会失望windows 8 跟windows 7没有什么区别，我当时也有这样的感觉，而且windows 8采用了windows 7 安装器，刚刚下载回来的时候还怀疑是不是镜像文件下载错了。其实windows 8 build 里面加入了很多功能。只是默认是关闭的。我们需要自己手动开启才能看到效果。
@@ -4759,7 +4759,7 @@ content.style.width = (w-160) + &amp;ldquo;px&amp;rdquo;;&amp;gt;
             <published>2011-04-27T23:03:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Windows 8 Milestone-2 (7955.0.110228-1930) 下载  File Name: 6.2.7955.0.fbl_sev_wdacxml.110228-1930_x86fre_client-ultimate.iso
@@ -4889,7 +4889,7 @@ MD5: 99375D7782027CBF2E70F5D0F8648406&lt;/p&gt;
             <published>2011-03-02T22:29:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">最好用的作笔记工具myBase介绍 myBase 是一个功能强大且可随心所欲自定义格式及层次关系的通用资料压缩管理、查看器，可用于管理和查阅各种各样的信息，如：各类文档、磁盘文件、光盘目录、资料、名片、事件、下载的精华、收集的资料等等，即使毫无规律的资料，也一样可以管理得有条不紊。若您善于管理资料，myBase 将会成为您得心应手的工具，若您不善于管理资料，myBase 将会有助于您提高资料管理能力。它将令您的各种资料分门别类，清清爽爽。新版具有许多令人惊喜的实用功能。
@@ -5001,7 +5001,7 @@ myBase 5.51 汉化文件及注册机下载地址：&lt;a href=&#34;http://u.115.
             <published>2011-02-16T17:34:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">apache+php+mysql下载(for windows)  最新apache下载地址：httpd-2.2.17-win32-x86-no_ssl.msi | 更多版本点击此处
@@ -5212,7 +5212,7 @@ mysql_close();    &lt;br&gt;
             <published>2010-12-23T22:20:16&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">a disk read error occured press ctrl+alt+alt to restart的解决方法
@@ -5276,7 +5276,7 @@ mysql_close();    &lt;br&gt;
             <published>2010-12-23T22:03:14&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">wordpress如何更换域名 在phpmyadmin中执行下面的查询语句
@@ -5365,7 +5365,7 @@ exit();
             <published>2010-12-23T21:43:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">firefox几点优化  在firefox地址栏中输入about:config）
@@ -5459,7 +5459,7 @@ browser.cache.disk.capacity 磁盘缓存容量自己适当更改 &lt;br&gt;
             <published>2010-12-17T14:09:00&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">很多在学校的朋友可能因为找联想客户端很辛苦，如linux版本，还有mac os x 版本的，这里我全部打包上传，里面有详细的使用说明。
@@ -5531,7 +5531,7 @@ browser.cache.disk.capacity 磁盘缓存容量自己适当更改 &lt;br&gt;
             <published>2010-12-14T11:50:16&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">很多时候因为搬家或者是升级导致了wordpress密码不对，其实是部分文件没有更新从配置文件更新过来。发邮件的方式是可以，但是邮件要花时间，而且要是邮箱都高忘记了怎么办呢？如何修改wordpress密码？下面给你推荐一种个人认为修改wordpress密码的最好办法！
@@ -5630,7 +5630,7 @@ $link = $wpdb-&amp;gt;query($sql);</summary>
             <published>2010-12-04T09:53:57&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">方法1.开始运行、输入%windir%\temp;清空里面的所有内容，返回到windows目录，右键temp目录——属性，点到安全选项，如果没有你可以在窗口的上边点开 工具——文件夹选项——查看——将“使用单文件共享(推荐)”钱的勾去掉就有了;将此文件夹USER用户权限设置为完全控制就能解决。
@@ -5697,7 +5697,7 @@ $link = $wpdb-&amp;gt;query($sql);</summary>
             <published>2010-11-16T17:11:53&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">我安装win x64,当时以为20G的分区应该够了。后面打了点补丁，通过减肥了也还是小了，经常磁盘整理，不过还是不够，用过很多工具都不能改变分区大小，因为我的系统装在最后一个逻辑分区。一般的软件支持向后扩展。于是找了一下，惊喜果然出现了。
@@ -5840,7 +5840,7 @@ Acronis Disk Director 使用教程 安装我就不用多讲了。这个软件安
             <published>2010-11-14T11:06:35&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">A记录 A (Address) 记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置您域名的子域名。通俗来说A记录就是服务器的IP,域名绑定A记录就是告诉DNS,当你输入域名的时候给你引导向设置在DNS的A记录所对应的服务器
@@ -5951,7 +5951,7 @@ Jim IN TXT &amp;quot;contact: &lt;a href=&#34;mailto:abc@mailserver.com&#34;&gt;
             <published>2010-11-13T12:44:28&#43;00:00</published>
             <author>
                     <name>木兮bio</name>
-                    <uri>https://oidbio.github.io/</uri>
+                    <uri>https://oi8io.github.io/</uri>
                     <email>vkilo@icloud.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">常用快捷键
