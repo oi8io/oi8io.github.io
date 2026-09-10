@@ -158,6 +158,23 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -245,6 +262,104 @@
         </div>
         
 <script type="text/javascript" src="/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js" defer></script>
+
+<style>
+#search-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+#search-modal.active { display: flex; }
+#search-modal .search-modal-box {
+    width: 100%;
+    max-width: 560px;
+    background: var(--card-background, #fff);
+    color: var(--card-text-color, #1a1b1c);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    padding: 20px 22px;
+    box-sizing: border-box;
+}
+#search-modal .search-modal-title {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--body-text-color, #707070);
+}
+#search-modal input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 1px solid var(--card-separator-color, #e4e4e4);
+    border-radius: 8px;
+    background: var(--card-background, #fff);
+    color: inherit;
+    outline: none;
+}
+#search-modal input:focus {
+    border-color: var(--accent-color, #34495e);
+}
+#search-modal .search-modal-hint {
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: var(--body-text-color, #707070);
+}
+</style>
+
+<div id="search-modal" role="dialog" aria-modal="true" aria-label="搜索">
+    <div class="search-modal-box">
+        <h3 class="search-modal-title">站内搜索</h3>
+        <input type="text" placeholder="输入关键词，回车搜索..." autocomplete="off" />
+        <p class="search-modal-hint">回车确认搜索 · Esc 关闭</p>
+    </div>
+</div>
+
+<script>
+(function () {
+    var modal = document.getElementById('search-modal');
+    if (!modal) return;
+    var input = modal.querySelector('input');
+    var box = modal.querySelector('.search-modal-box');
+
+    function open() {
+        modal.classList.add('active');
+        input.value = '';
+        setTimeout(function () { input.focus(); }, 0);
+    }
+    function close() {
+        modal.classList.remove('active');
+        input.blur();
+    }
+    function submit() {
+        var kw = input.value.trim();
+        if (!kw) return;
+        window.location.href = '/search/?keyword=' + encodeURIComponent(kw);
+    }
+
+    
+    document.querySelectorAll('#main-menu a[href*="/search"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+            e.preventDefault();
+            open();
+        });
+    });
+
+    input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); submit(); }
+        if (e.key === 'Escape') { close(); }
+    });
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) close();
+    });
+})();
+</script>
 
 
     </body>
