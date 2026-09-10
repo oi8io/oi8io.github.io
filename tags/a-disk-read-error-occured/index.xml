@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>A Disk Read Error Occured on 一知半解</title>
+        <link>https://oi8io.github.io/tags/a-disk-read-error-occured/</link>
+        <description>Recent content in A Disk Read Error Occured on 一知半解</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <copyright>CC BY-NC-SA 4.0</copyright>
+        <lastBuildDate>Thu, 23 Dec 2010 22:20:16 +0000</lastBuildDate><atom:link href="https://oi8io.github.io/tags/a-disk-read-error-occured/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>解决a disk read error occured  press ctrl&#43;alt&#43;alt to restart</title>
+            <link>https://oi8io.github.io/posts/solve-a-disk-read-occured/</link>
+            <pubDate>Thu, 23 Dec 2010 22:20:16 +0000</pubDate>
+            <guid>https://oi8io.github.io/posts/solve-a-disk-read-occured/</guid>
+            <description>&lt;p&gt;a disk read error occured  press ctrl+alt+alt to restart的解决方法&lt;/p&gt;&#xA;&lt;p&gt;因为很多人是用的是串口的硬盘。换接口是不行的。前不久一个兄弟电脑坏了。老是开机出现这个错误。&lt;/p&gt;&#xA;&lt;p&gt;弄了好几回都没有效果；感觉相当的纠结。不过几经折腾呢，我感觉也不是问题的问题。我再也不弄那个bios了，弄的太累了，越搞越糊涂。&lt;/p&gt;&#xA;&lt;p&gt;我是这么弄的。把机子拆开，把cmos电池反装一会儿，重新给正确的装上去。然后开机会出现Floppy disk  fail (40)；还有就是cmos没有设置什么的；我们点击delete键进入bios，然后把Floppy disk默认的1.44M设置为 none。启动磁盘里面该选什么选什么。这样应该就不存在什么问题了。&lt;/p&gt;&#xA;&lt;p&gt;还有一个需要检查的地方就是你的硬盘是不是存在活动分区，假如说不存在，请把你装的最早的系统所在的分区设为活动分区。&lt;/p&gt;&#xA;</description>
+        </item></channel>
+</rss>

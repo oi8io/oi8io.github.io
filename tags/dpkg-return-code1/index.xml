@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Dpkg Return Code(1) on 一知半解</title>
+        <link>https://oi8io.github.io/tags/dpkg-return-code1/</link>
+        <description>Recent content in Dpkg Return Code(1) on 一知半解</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <copyright>CC BY-NC-SA 4.0</copyright>
+        <lastBuildDate>Sun, 24 Feb 2013 16:01:00 +0000</lastBuildDate><atom:link href="https://oi8io.github.io/tags/dpkg-return-code1/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>IOS 用Cydia安装软件 出现dpkg return code(1)</title>
+            <link>https://oi8io.github.io/posts/ios-dpkg-return-code1/</link>
+            <pubDate>Sun, 24 Feb 2013 16:01:00 +0000</pubDate>
+            <guid>https://oi8io.github.io/posts/ios-dpkg-return-code1/</guid>
+            <description>&lt;p&gt; &lt;/p&gt;&#xA;&lt;h3 id=&#34;用cydia安装软件-出现dpkg-return-code1错误解决办法&#34;&gt;用Cydia安装软件 出现dpkg return code(1)错误解决办法&#xA;&lt;/h3&gt;&lt;hr&gt;&#xA;&lt;p&gt;用工具这里就不多说了。不过推荐使用SSH访问IOS的办法。这里的其实iTool之类的比较方便。&lt;/p&gt;&#xA;&lt;p&gt;删掉所有/var/cache/apt/archives目录下与/var/lib/dpkg/info下相同的文件。&lt;/p&gt;&#xA;&lt;p&gt;PS:&lt;/p&gt;&#xA;&lt;p&gt;也就是/var/lib/dpkg/info下有的/var/cache/apt/archives下不能有。/var/cache/apt/archives目录为操作对象，/var/lib/dpkg/info 为参考对象。&lt;/p&gt;&#xA;</description>
+        </item></channel>
+</rss>

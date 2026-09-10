@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Chrome on 一知半解</title>
+        <link>https://oi8io.github.io/tags/chrome/</link>
+        <description>Recent content in Chrome on 一知半解</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <copyright>CC BY-NC-SA 4.0</copyright>
+        <lastBuildDate>Sun, 24 Feb 2013 14:59:00 +0000</lastBuildDate><atom:link href="https://oi8io.github.io/tags/chrome/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>Chrome 中文版字体最小限制</title>
+            <link>https://oi8io.github.io/posts/how-to-fix-samplifted-chinese-chrome-smallest-font-limit/</link>
+            <pubDate>Sun, 24 Feb 2013 14:59:00 +0000</pubDate>
+            <guid>https://oi8io.github.io/posts/how-to-fix-samplifted-chinese-chrome-smallest-font-limit/</guid>
+            <description>&lt;p&gt;最近因为一个打印的页面在Chrome字体忽大忽小，错位很严重，其他的浏览器正常；于是我拿到我电脑上一看是正常的，于是对比一下两台电脑，我用的版本是英文版，显示正常。中文版本就有问题，我因为对CSS不是很感冒，我以为是默认字体的问题，于是我把英文版的字体配置与中文版本一致，但是结果我的英文版Chrome依然正常。于是我做了个艰难的决定，这肯定Chrome中文版本与英文版的区别。&lt;/p&gt;&#xA;&lt;p&gt;原来是Chrome中文版字体显示问题，Google浏览器中文版本显示错位问题。默认的情况下，Chrome 中文版配置文件中对最小字体限制为12px，我的字体有9px或者更小的。于是：&lt;/p&gt;&#xA;&lt;h3 id=&#34;chromegoogle浏览器中文版本字体12px大小限制解决办法&#34;&gt;Chrome（Google浏览器）中文版本字体12px大小限制解决办法&#xA;&lt;/h3&gt;&lt;hr&gt;&#xA;&lt;p&gt;需要使用 WebKit 私有CSS特性 &amp;lsquo;-webkit-text-size-adjust:none&amp;rsquo; 来避免最小字号限制；于是添加一个webkit的私有属性，就能解决问题。&lt;/p&gt;&#xA;&#xA;    &lt;blockquote&gt;&#xA;        &lt;p&gt;tag{-webkit-text-size-adjust:none;} /&lt;em&gt;tag为选择器&lt;/em&gt;/&#xA;html{-webkit-text-size-adjust: none;} /&lt;em&gt;也可以用全局的，但是影响范围很广&lt;/em&gt;/&#xA;我用的是全局的，因为我这里需要对整个页面进行调整。而且错乱排列。&lt;/p&gt;&#xA;&#xA;    &lt;/blockquote&gt;&#xA;</description>
+        </item></channel>
+</rss>

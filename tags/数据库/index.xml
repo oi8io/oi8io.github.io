@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>数据库 on 一知半解</title>
+        <link>https://oi8io.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+        <description>Recent content in 数据库 on 一知半解</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <copyright>CC BY-NC-SA 4.0</copyright>
+        <lastBuildDate>Tue, 14 May 2013 21:29:19 +0000</lastBuildDate><atom:link href="https://oi8io.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>Mac下安装MongoDB教程</title>
+            <link>https://oi8io.github.io/posts/mac-installing-mongodb-tutorial/</link>
+            <pubDate>Tue, 14 May 2013 21:29:19 +0000</pubDate>
+            <guid>https://oi8io.github.io/posts/mac-installing-mongodb-tutorial/</guid>
+            <description>&lt;p&gt;在mac下面如何安装&lt;a class=&#34;link&#34; href=&#34;http://www.mongodb.org/&#34;  title=&#34;MongoDB&#34;&#xA;     target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;MongoDB&lt;/a&gt;呢，其实方法很简单。按照官方的三种方法安装就可以了。我这里是针对PHP的安装。多了一个PHP的MongoDB扩展安装。&lt;/p&gt;&#xA;&lt;p&gt;A.执行终端命令&lt;/p&gt;&#xA;&lt;pre&gt;brew install mongodb&lt;/pre&gt;&#xA;&lt;p&gt;当然。这是在你安装好&lt;a class=&#34;link&#34; href=&#34;https://github.com/mxcl/homebrew&#34;  title=&#34;homebrew&#34;&#xA;     target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;Homebrew&lt;/a&gt;的情况下。假如没有安装的话请猛戳&lt;a class=&#34;link&#34; href=&#34;http://mxcl.github.io/homebrew/&#34;  title=&#34;homebrew&#34;&#xA;     target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;这里&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;至此MongoDB已经安装完成。&lt;/p&gt;&#xA;&lt;p&gt;B.接下来执行命令即可启动MongoDB&lt;/p&gt;&#xA;&lt;pre&gt;mongod&lt;/pre&gt;&#xA;&lt;p&gt;C.现在要做的就是把PHP对MongoDB的支持扩展安装上。直接执行如下命令&lt;/p&gt;&#xA;&lt;pre&gt;pecl install  mongo&lt;/pre&gt;&#xA;&lt;p&gt;这里需要说明的是你需要安装好pear才可以执行这个命令。而且要有安装autoconf工具，phpize才可以自动配置到PHP的扩展目录&lt;/p&gt;&#xA;&lt;p&gt;在php.ini中添加&lt;/p&gt;&#xA;&lt;pre&gt;extension=mongo.so&lt;/pre&gt;&#xA;&lt;p&gt;重启PHP-FPM以及Web Server软件（如Nginx或Apache）&lt;/p&gt;&#xA;&lt;p&gt;新建一个PHP文件，加入以下代码&lt;/p&gt;&#xA;&lt;pre class=&#34;lang:php decode:true &#34;&gt;$mongo = new Mongo(&#34;mongodb://localhost:27017&#34;,array(&#34;connect&#34;=&amp;gt;TRUE));&#xA;        $mongo-&amp;gt;connect();&#xA;        $db = $mongo-&amp;gt;selectDB(&#39;test&#39;);&#xA;         $obj = new stdClass();&#xA;        $obj-&amp;gt;name = &#39;MongoDB&#39;;&#xA;        $obj-&amp;gt;age = 25;&#xA;        $dataA = $db-&amp;gt;testdb;&#xA;        $dataA-&amp;gt;insert($obj);&#xA;        $r = $dataA-&amp;gt;find();&#xA;        echo $obj-&amp;gt;name; &#xA;        $mongo-&amp;gt;close();&lt;/pre&gt;&#xA;&lt;p&gt; &lt;/p&gt;&#xA;</description>
+        </item></channel>
+</rss>

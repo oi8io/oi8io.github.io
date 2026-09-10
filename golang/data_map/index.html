@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1、设计原理 1 2 3 4 5 6 7 8 9 10 11 12 13 func fastrand() uint32 { mp := getg().m // Implement xorshift64+: 2 32-bit xorshift sequences added together. // Shift triplet [17,7,16] was calculated as indicated in Marsaglia&#39;s // Xorshift paper: https://www.jstatsoft.org/article/view/v008i14/xorshift.pdf // This generator passes the SmallCrush suite, part of TestU01 framework: // http://simul.iro.umontreal.ca/testu01/tu01.html s1, s0 := mp.fastrand[0], mp.fastrand[1] s1 ^= s1 &lt;&lt; 17 s1 = s1 ^ s0 ^ s1&gt;&gt;7 ^ s0&gt;&gt;16 mp.fastrand[0], mp.fastrand[1] = s0, s1 return s0 + s1 } 2、数据结构 map仅仅是一个hash表，数据被存放到一个桶数组中，每个桶包含8个键值对。低位的hash用于选择桶。每个桶包含每个hash的几个高阶位，以区分单个桶中的条目。\n">
+<title>Golang Map实现</title>
+
+
+<link rel="canonical" href="https://oi8io.github.io/golang/data_map/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.6c875234350e518395efbf51958523b0852fb2215ab8cb81358f9317153eba2d.css"><meta property='og:title' content="Golang Map实现">
+<meta property='og:description' content="1、设计原理 1 2 3 4 5 6 7 8 9 10 11 12 13 func fastrand() uint32 { mp := getg().m // Implement xorshift64+: 2 32-bit xorshift sequences added together. // Shift triplet [17,7,16] was calculated as indicated in Marsaglia&#39;s // Xorshift paper: https://www.jstatsoft.org/article/view/v008i14/xorshift.pdf // This generator passes the SmallCrush suite, part of TestU01 framework: // http://simul.iro.umontreal.ca/testu01/tu01.html s1, s0 := mp.fastrand[0], mp.fastrand[1] s1 ^= s1 &lt;&lt; 17 s1 = s1 ^ s0 ^ s1&gt;&gt;7 ^ s0&gt;&gt;16 mp.fastrand[0], mp.fastrand[1] = s0, s1 return s0 + s1 } 2、数据结构 map仅仅是一个hash表，数据被存放到一个桶数组中，每个桶包含8个键值对。低位的hash用于选择桶。每个桶包含每个hash的几个高阶位，以区分单个桶中的条目。\n">
+<meta property='og:url' content='https://oi8io.github.io/golang/data_map/'>
+<meta property='og:site_name' content='一知半解'>
+<meta property='og:type' content='article'><meta property='article:section' content='Golang' /><meta property='article:published_time' content='2021-09-17T15:58:07&#43;08:00'/><meta property='article:modified_time' content='2021-09-17T15:58:07&#43;08:00'/>
+<meta name="twitter:title" content="Golang Map实现">
+<meta name="twitter:description" content="1、设计原理 1 2 3 4 5 6 7 8 9 10 11 12 13 func fastrand() uint32 { mp := getg().m // Implement xorshift64+: 2 32-bit xorshift sequences added together. // Shift triplet [17,7,16] was calculated as indicated in Marsaglia&#39;s // Xorshift paper: https://www.jstatsoft.org/article/view/v008i14/xorshift.pdf // This generator passes the SmallCrush suite, part of TestU01 framework: // http://simul.iro.umontreal.ca/testu01/tu01.html s1, s0 := mp.fastrand[0], mp.fastrand[1] s1 ^= s1 &lt;&lt; 17 s1 = s1 ^ s0 ^ s1&gt;&gt;7 ^ s0&gt;&gt;16 mp.fastrand[0], mp.fastrand[1] = s0, s1 return s0 + s1 } 2、数据结构 map仅仅是一个hash表，数据被存放到一个桶数组中，每个桶包含8个键值对。低位的hash用于选择桶。每个桶包含每个hash的几个高阶位，以区分单个桶中的条目。\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        <figure class="site-avatar">
+                <a href="/">
+                    <img src="/icons/apple-touch-icon.png" 
+                        width=""
+                        height=""
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
+                </a>
+                
+            </figure>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">一知半解</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/ai/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="4" y="8" width="16" height="12" rx="2"></rect>
+  <path d="M12 4v4"></path>
+  <circle cx="12" cy="3" r="1"></circle>
+  <circle cx="9" cy="13" r="1"></circle>
+  <circle cx="15" cy="13" r="1"></circle>
+  <path d="M9 17h6"></path>
+</svg>
+
+                
+                <span>AI</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/project/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                
+                <span>项目</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/posts/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>笔记</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                <form action="/search/" class="search-form widget" >
+        <p>
+            <label>搜索</label>
+            <input name="keyword" required placeholder="输入关键词..." />
+        
+            <button title="搜索">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+            </button>
+        </p>
+    </form>
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/golang/" style="background-color: hsl(83, 60%, 84%); color: hsl(83, 60%, 15%);">
+                Golang
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/golang/data_map/">Golang Map实现</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    
+    
+    
+    <footer class="article-meta">
+        
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                    <time class="article-time--published" datetime='2021-09-17T15:58:07&#43;08:00'>2021年9月17日星期五</time>
+                
+
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                    <time class="article-time--reading">
+                        阅读时长: 8 分钟
+                    </time>
+                
+            </div>
+        
+
+        
+
+        
+    </footer>
+    
+</div>
+
+</header>
+
+    
+
+    <section class="article-content">
+    
+    
+    <h2 id="1设计原理">1、设计原理
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">fastrand</span><span class="p">()</span><span class="w"> </span><span class="kt">uint32</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">mp</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">getg</span><span class="p">().</span><span class="nx">m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Implement xorshift64+: 2 32-bit xorshift sequences added together.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Shift triplet [17,7,16] was calculated as indicated in Marsaglia&#39;s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Xorshift paper: https://www.jstatsoft.org/article/view/v008i14/xorshift.pdf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// This generator passes the SmallCrush suite, part of TestU01 framework:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// http://simul.iro.umontreal.ca/testu01/tu01.html</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">s1</span><span class="p">,</span><span class="w"> </span><span class="nx">s0</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mp</span><span class="p">.</span><span class="nx">fastrand</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="nx">mp</span><span class="p">.</span><span class="nx">fastrand</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">s1</span><span class="w"> </span><span class="p">^=</span><span class="w"> </span><span class="nx">s1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">17</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">s1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">s1</span><span class="w"> </span><span class="p">^</span><span class="w"> </span><span class="nx">s0</span><span class="w"> </span><span class="p">^</span><span class="w"> </span><span class="nx">s1</span><span class="o">&gt;&gt;</span><span class="mi">7</span><span class="w"> </span><span class="p">^</span><span class="w"> </span><span class="nx">s0</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">mp</span><span class="p">.</span><span class="nx">fastrand</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="nx">mp</span><span class="p">.</span><span class="nx">fastrand</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">s0</span><span class="p">,</span><span class="w"> </span><span class="nx">s1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">s0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">s1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2数据结构">2、数据结构
+</h2><p>map仅仅是一个hash表，数据被存放到一个桶数组中，每个桶包含8个键值对。低位的hash用于选择桶。每个桶包含每个hash的几个高阶位，以区分单个桶中的条目。</p>
+<p>如果一个桶超过了8条，我们链接到extra的桶。</p>
+<h3 id="21-hmap">2.1 hmap
+</h3><p>哈希表 <strong>runtime.hmap</strong> 的桶是 <strong>runtime.bmap</strong>每一个 <strong>runtime.bmap</strong> 都能存储 8 个键值对，当哈希表中存储的数据过多，单个桶已经装满时就会使用 <strong>extra.nextOverflow</strong> 中桶存储溢出的数据。</p>
+<p>Go 语言运行时同时使用了多个数据结构组合表示哈希表，其中runtime.hmap是最核心的结构体，我们先来了解一下该结构体的内部字段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// A header for a Go map.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">hmap</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Note: the format of the hmap is also encoded in cmd/compile/internal/gc/reflect.go.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Make sure this stays in sync with the compiler&#39;s definition.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">count</span><span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="cp">//长度 # live cells == size of map.  Must be first (used by len() builtin)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">flags</span><span class="w">     </span><span class="kt">uint8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">B</span><span class="w">         </span><span class="kt">uint8</span><span class="w">  </span><span class="c1">// buckets数量为2^B log_2 of # of buckets (can hold up to loadFactor * 2^B items)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">noverflow</span><span class="w"> </span><span class="kt">uint16</span><span class="w"> </span><span class="cp">//溢出桶数量近似值。 approximate number of overflow buckets; see incrnoverflow for details</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">hash0</span><span class="w">     </span><span class="kt">uint32</span><span class="w"> </span><span class="c1">// hash种子 hash seed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">buckets</span><span class="w">    </span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="w"> </span><span class="cp">//长度为2^B的buckets数组 array of 2^B Buckets. may be nil if count==0.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">oldbuckets</span><span class="w"> </span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="w"> </span><span class="cp">//前一个桶数组，大小是现在的一半，只有在扩容过程中才不为nil  previous bucket array of half the size, non-nil only when growing</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">nevacuate</span><span class="w">  </span><span class="kt">uintptr</span><span class="w">        </span><span class="c1">// 下一个要迁移桶的编号（顺序迁移）（小于此值的桶已被迁移） progress counter for evacuation (buckets less than this have been evacuated)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">extra</span><span class="w"> </span><span class="o">*</span><span class="nx">mapextra</span><span class="w"> </span><span class="c1">// optional fields</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// mapextra holds fields that are not present on all maps.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">mapextra</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// If both key and elem do not contain pointers and are inline, then we mark bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// type as containing no pointers. This avoids scanning such maps.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// However, bmap.overflow is a pointer. In order to keep overflow buckets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// alive, we store pointers to all overflow buckets in hmap.extra.overflow and hmap.extra.oldoverflow.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// overflow and oldoverflow are only used if key and elem do not contain pointers.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// overflow contains overflow buckets for hmap.buckets.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// oldoverflow contains overflow buckets for hmap.oldbuckets.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// The indirection allows to store a pointer to the slice in hiter.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">overflow</span><span class="w">    </span><span class="o">*</span><span class="p">[]</span><span class="o">*</span><span class="nx">bmap</span><span class="w"> </span><span class="cp">//已经使用的溢出桶</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">oldoverflow</span><span class="w"> </span><span class="o">*</span><span class="p">[]</span><span class="o">*</span><span class="nx">bmap</span><span class="w"> </span><span class="cp">//扩容阶段旧桶用到的那些桶</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// nextOverflow holds a pointer to a free overflow bucket.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">nextOverflow</span><span class="w"> </span><span class="o">*</span><span class="nx">bmap</span><span class="w"> </span><span class="cp">//下一个未使用的空桶</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// flags</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">iterator</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// there may be an iterator using buckets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">oldIterator</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="c1">// there may be an iterator using oldbuckets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">hashWriting</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c1">// a goroutine is writing to the map</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sameSizeGrow</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="c1">// the current map growth is to a new map of the same size</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><strong>count</strong> 长度</li>
+<li><strong>flags</strong> 由四个bit位组成，1.有迭代器在使用buckets，2. 有迭代器在使用oldbuckets,4.hashWriting 正在向map写入，8、sameSizeGrow 等量扩容</li>
+<li><strong>B</strong> buckets数量，2^B次方，如果B&gt;4,则申请bucket数组的过程中，多申请2^(B-4)个作为overflow bucket，并将nextOverflow指向2^B处的bucket</li>
+<li><strong>noverflow</strong> 溢出桶的数量，主要用于触发等量扩容条件当<strong>noverflow&gt;uint16(1)&laquo;(B&amp;15)</strong>,其中B最大为<strong>15</strong>。</li>
+<li><strong>hash0</strong> hash随机种子</li>
+<li><strong>buckets</strong> 桶，长度为2^B的buckets数组</li>
+<li><strong>oldbuckets</strong> 旧桶，为了渐进式扩容，先将旧桶保存到这里，扩容完成后即消除。</li>
+<li><strong>nevacuate</strong> 当前扩容的进度，指向下一个需要迁移的桶编号</li>
+<li><strong>extra</strong> 扩展字段，主要拥有溢出的场景如下：
+<ul>
+<li><strong>overflow</strong> 已经使用的溢出桶</li>
+<li><strong>oldoverflow</strong> 扩容阶段旧桶用到的那些溢出桶</li>
+<li>**nextOverflow  **下一个可用的溢出桶</li>
+</ul>
+</li>
+</ol>
+<h3 id="22-bmap">2.2 bmap
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// A bucket for a Go map.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">bmap</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// tophash generally contains the top byte of the hash value</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// for each key in this bucket. If tophash[0] &lt; minTopHash,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// tophash[0] is a bucket evacuation state instead.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">tophash</span><span class="w"> </span><span class="p">[</span><span class="nx">bucketCnt</span><span class="p">]</span><span class="kt">uint8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Followed by bucketCnt keys and then bucketCnt elems.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// NOTE: packing all the keys together and then all the elems together makes the</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// code a bit more complicated than alternating key/elem/key/elem/... but it allows</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// us to eliminate padding which would be needed for, e.g., map[int64]int8.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Followed by an overflow pointer.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">bmap</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">tophash</span><span class="w">  </span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="kt">uint8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">keys</span><span class="w">     </span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="nx">keytype</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">values</span><span class="w">   </span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="nx">valuetype</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">pad</span><span class="w">      </span><span class="kt">uintptr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">overflow</span><span class="w"> </span><span class="kt">uintptr</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">emptyRest</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="c1">// this cell is empty, and there are no more non-empty cells at higher indexes or overflows.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">emptyOne</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// this cell is empty</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">evacuatedX</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="c1">// key/elem is valid.  Entry has been evacuated to first half of larger table.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">evacuatedY</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c1">// same as above, but evacuated to second half of larger table.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">evacuatedEmpty</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c1">// cell is empty, bucket is evacuated.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">minTopHash</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="c1">// minimum tophash for a normal filled cell.</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>哈希表 <strong>runtime.hmap</strong> 的<strong>桶</strong>是 <strong>runtime.bmap</strong>。每一个 <strong>runtime.bmap</strong> 都能存储 8 个键值对，当哈希表中存储的数据过多，单个桶已经装满时就会使用 <strong>extra.nextOverflow</strong> 中桶存储溢出的数据。</p>
+<p>在运行期间，runtime.bmap 结构体其实不止包含 tophash 字段，因为哈希表中可能存储不同类型的键值对，而且 Go 语言也不支持泛型，所以键值对占据的内存空间大小只能在编译时进行推导。runtime.bmap 中的其他字段在运行时也都是通过计算内存地址的方式访问的，所以它的定义中就不包含这些字段，不过我们能根据编译期间的 cmd/compile/internal/gc.bmap 函数重建它的结构：</p>
+<ol>
+<li><strong>tophash</strong> 存储高位的hash值，用于快速定位，<code>tophash=hash&gt;&gt;(PtrSize*8 - 8)</code>64位系统下将hash右移56位，刚好采用高8位，如果小于5，则加5，因为5以下都有特殊的定义。</li>
+<li><strong>keys</strong> 键存放的地方，键与键存放一起主要是为了方便计算偏移量和遍历。</li>
+<li><strong>values</strong> 存放值数据的地方</li>
+<li><strong>pad</strong> ，内存对齐？我也不知</li>
+<li><strong>overflow</strong> 指向溢出桶的指针，形成链表</li>
+</ol>
+<h3 id="23-hiter">2.3 hiter
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// A hash iteration structure.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// If you modify hiter, also change cmd/compile/internal/gc/reflect.go to indicate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// the layout of this structure.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">hiter</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">key</span><span class="w">         </span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="w"> </span><span class="c1">// 每次迭代结果的key Must be in first position.  Write nil to indicate iteration end (see cmd/compile/internal/gc/range.go).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">elem</span><span class="w">        </span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="w"> </span><span class="c1">// 每次迭代结果的value Must be in second position (see cmd/compile/internal/gc/range.go).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">t</span><span class="w">           </span><span class="o">*</span><span class="nx">maptype</span><span class="w"> </span><span class="c1">// map的类型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">h</span><span class="w">           </span><span class="o">*</span><span class="nx">hmap</span><span class="w">   </span><span class="c1">// map指针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">buckets</span><span class="w">     </span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="w"> </span><span class="c1">// 初始化是指向的桶指针，bucket ptr at hash_iter initialization time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">bptr</span><span class="w">        </span><span class="o">*</span><span class="nx">bmap</span><span class="w">          </span><span class="c1">// 遍历当前桶，current bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">overflow</span><span class="w">    </span><span class="o">*</span><span class="p">[]</span><span class="o">*</span><span class="nx">bmap</span><span class="w">       </span><span class="c1">// 当前map溢出桶， keeps overflow buckets of hmap.buckets alive</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">oldoverflow</span><span class="w"> </span><span class="o">*</span><span class="p">[]</span><span class="o">*</span><span class="nx">bmap</span><span class="w">       </span><span class="c1">// 扩容之前map溢出桶， keeps overflow buckets of hmap.oldbuckets alive</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">startBucket</span><span class="w"> </span><span class="kt">uintptr</span><span class="w">        </span><span class="c1">// 开始桶偏移量，从这个桶开始遍历的， bucket iteration started at</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">offset</span><span class="w">      </span><span class="kt">uint8</span><span class="w">          </span><span class="c1">// 桶内偏移量，表示第几个（key，value），intra-bucket offset to start from during iteration (should be big enough to hold bucketCnt-1)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">wrapped</span><span class="w">     </span><span class="kt">bool</span><span class="w">           </span><span class="c1">// 尾部已经遍历完成，开始折返从头开始遍历，already wrapped around from end of bucket array to beginning</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">B</span><span class="w">           </span><span class="kt">uint8</span><span class="w">          </span><span class="c1">// h.B</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">i</span><span class="w">           </span><span class="kt">uint8</span><span class="w">          </span><span class="c1">// 当前桶已经遍历数目，i=8时，bptr指向下一个</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">bucket</span><span class="w">      </span><span class="kt">uintptr</span><span class="w">        </span><span class="c1">// 当前hash桶偏移量</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">checkBucket</span><span class="w"> </span><span class="kt">uintptr</span><span class="w">        </span><span class="c1">// 不为 noCheck(1&lt;&lt;(8*sys.PtrSize) - 1)的话，表示当前桶还没有搬迁到新 map，需要对旧桶检查跳过迁移到新扩容的hash桶的元素</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2初始化">2、初始化
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">hash</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;1&#34;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;3&#34;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;5&#34;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">maplit</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="o">*</span><span class="nx">Node</span><span class="p">,</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="o">*</span><span class="nx">Node</span><span class="p">,</span><span class="w"> </span><span class="nx">init</span><span class="w"> </span><span class="o">*</span><span class="nx">Nodes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">a</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nf">nod</span><span class="p">(</span><span class="nx">OMAKE</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">a</span><span class="p">.</span><span class="nx">Esc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">Esc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">a</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nf">Set2</span><span class="p">(</span><span class="nf">typenod</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">Type</span><span class="p">),</span><span class="w"> </span><span class="nf">nodintconst</span><span class="p">(</span><span class="nb">int64</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nf">Len</span><span class="p">())))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nf">litas</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">init</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">entries</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">n</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nf">Slice</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">entries</span><span class="p">)</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">//	...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Build list of var[c] = expr.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// Use temporaries so that mapassign1 can have addressable key, elem.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="c1">// ...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-读写操作">3、 读写操作
+</h2><p>3、扩容</p>
+<p>4.1、等量扩容</p>
+<p>4.2、增量扩容</p>
+<h2 id="5访问">5、访问
+</h2><h3 id="51-遍历">5.1 遍历
+</h3><p><strong>mapiterinit</strong>()函数主要是决定我们从哪个位置开始迭代，为什么是从哪个位置，而不是直接从 hash 数组头部开始呢？hash 表中数据每次插入的位置是变化的，这是因为实现的原因，一方面 hash 种子是随机的，这导致相同的数据在不同的 map 变量内的 hash 值不同；另一方面即使同一个 map 变量内，数据删除再添加的位置也有可能变化，因为在同一个桶及溢出链表中数据的位置不分先后，所以为了防止用户错误的依赖于每次迭代的顺序，map 作者干脆让相同的 map 每次迭代的顺序也是随机的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">for</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">bucketCnt</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">offi</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">it</span><span class="p">.</span><span class="nx">offset</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="nx">bucketCnt</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="cp">//offset开始遍历</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">it</span><span class="p">.</span><span class="nx">bucket</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">bucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">it</span><span class="p">.</span><span class="nx">bptr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// avoid unnecessary write barrier; see issue 14921</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="nx">it</span><span class="p">.</span><span class="nx">bptr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">b</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">it</span><span class="p">.</span><span class="nx">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">it</span><span class="p">.</span><span class="nx">checkBucket</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">checkBucket</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>map 的遍历由函数<strong>mapiternext</strong>()完成，过程如下：
+（1）从 hash 数组中第 it.startBucket 个桶开始，先遍历 hash 桶，然后是这个桶的溢出链表；
+（2）之后 hash 数组偏移量+1，继续前一步动作；
+（3）遍历每一个桶，无论是<strong>正常桶</strong>还是<strong>溢出桶</strong>，都从 <strong>it.offset</strong> 偏移量开始；
+（4）当迭代器经过一轮循环回到 <strong>it.startBucket</strong> 的位置，结束遍历。</p>
+<p>注意：
+（1）map 如果在遍历开始时发现处于写入状态，那么报并发读写异常，终止程序。
+（2）迭代还需要关注扩容的情况：如果是在迭代开始后才 growing，那么迭代初始状态如 it.buckets 和 it.B 等将被改变，迭代有可能出现异常。如果是先 growing，再开始迭代。这种情况下，不会出现异常，会先到旧 hash 表中检查 key 对应的桶有没有被迁移，未迁移则遍历旧桶，已迁移则遍历新 hash 表里对应的桶。</p>
+<h2 id="6删除">6、删除
+</h2><p>渐进式扩容：</p>
+<p><img alt="image-20210906073044322" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906073044322.png"></p>
+<p>桶的数据结构：</p>
+<p>tophash</p>
+<p>key与key放一起</p>
+<p>value与value放一起</p>
+<p>一个桶放不下之后，会新建一个新的桶存放。</p>
+<p>如果hash表要分配的桶的数量大于2^4就认为桶的溢出概率很大，就会预分配2^(B-4)个溢出桶备用，溢出桶和常规桶内存上面是连续的，常规桶在前2^B次方，后面的用着溢出桶，举个例子：B=14,前面4k个用着存储常规桶，后面1k个桶用着存储溢出桶。</p>
+<p><img alt="image-20210906074525883" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906074525883.png"></p>
+<p><img alt="image-20210906074926231" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906074926231.png"></p>
+<h2 id="2扩容">2、扩容
+</h2><h3 id="21增量扩容">2.1、增量扩容
+</h3><p>从赋值函数mapassign()可以看出，触发扩容有两个条件：
+（1）当前不处在 growing 状态；
+（2.1）元素个数 count 大于 hash 桶数量(2^B)*6.5。注意这里的 hash 桶指的是 hash 数组中的桶，不包括溢出的桶；
+（2.2）或溢出的桶数量 noverflow&gt;=32768(1&laquo;15) 或者 noverflow&gt;=hash 数组中桶数量。</p>
+<p>go map 的扩容预处理由函数 hashGrow() 来完成，主要完成两个操作：
+（1）判断扩容类型；
+（2）申请新的 hash 桶。
+新申请的 hash 桶数组指针由 h.buckets 保存，h.oldbuckets 则指向旧 hash 桶数组。map 是否处于扩容状态是根据 h.oldbuckets 是否为空来判断的。</p>
+<p>Go map 有两种扩容类型：
+（1）一种是真扩容，扩到 hash 桶数量为原来的两倍，针对元素数量过多的情况；
+（2）一种是假扩容，hash 桶数量不变，只是把元素搬迁到新的 map，针对溢出桶过多的情况。如果是假扩容，那么 hmap.flags 会被打上 sameSizeGrow 标识。</p>
+<h3 id="22等量扩容">2.2、等量扩容
+</h3><p>目的是合并已经删除很多keys的map。</p>
+<p><img alt="image-20210906221650549" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906221650549.png"></p>
+<p><img alt="image-20210906221815289" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906221815289.png"></p>
+<p><img alt="image-20210906222507581" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906222507581.png"></p>
+<p><img alt="image-20210906222626723" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906222626723.png"></p>
+<p><img alt="image-20210906222816777" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906222816777.png"></p>
+<p><img alt="image-20210906225608305" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906225608305.png"></p>
+<p><img alt="image-20210906230047426" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://img.oinio.net/images/image-20210906230047426.png"></p>
+
+</section>
+
+
+    <footer class="article-meta article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2026 CC BY-NC-SA 4.0
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.3">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
+
+    
+
+            </main>
+        </div>
+        
+<script type="text/javascript" src="/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js" defer></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Wordpress on 一知半解</title>
+        <link>https://oi8io.github.io/tags/wordpress/</link>
+        <description>Recent content in Wordpress on 一知半解</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh</language>
+        <copyright>CC BY-NC-SA 4.0</copyright>
+        <lastBuildDate>Wed, 04 May 2011 12:25:40 +0000</lastBuildDate><atom:link href="https://oi8io.github.io/tags/wordpress/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>ubuntu 下最好的wordpress 发布工具</title>
+            <link>https://oi8io.github.io/posts/ubuntu-wordpress-post-tool/</link>
+            <pubDate>Wed, 04 May 2011 12:25:40 +0000</pubDate>
+            <guid>https://oi8io.github.io/posts/ubuntu-wordpress-post-tool/</guid>
+            <description>&lt;p&gt;&lt;strong&gt;&lt;font color=&#34;#FF0000&#34;&gt;Ubuntu&lt;/font&gt; &lt;strong&gt;下&lt;/strong&gt;&lt;font color=&#34;#666600&#34;&gt;wordpress&lt;/font&gt;&lt;/strong&gt; 发布工具貌似也特别多，但是个人最喜欢的应该是**&lt;font color=&#34;#FF0000&#34;&gt;ScribeFire Blog Editor&lt;/font&gt;&lt;strong&gt;这个&lt;/strong&gt;&lt;font color=&#34;#FF0000&#34;&gt;firefox&lt;/font&gt; &lt;strong&gt;插件，功能十分强大&lt;/strong&gt;。&lt;font color=&#34;#666600&#34;&gt;推荐使用&lt;/font&gt;。&#xA;**使用界面非常友好，字体格式设置功能也比较多。能直接插入图片并上传，支持设置分类、标签。修改已经发布文章，支持定时发布，支持自定义设置Pings 。如果你不小心关闭了浏览器，你写的东西不会丢失。&#xA;&lt;font color=&#34;#FF0000&#34;&gt;**ScribeFire Blog Editor **&lt;/font&gt;插件添加地址：&lt;a class=&#34;link&#34; href=&#34;https://addons.mozilla.org/zh-CN/firefox/search/?q=ScribeFire&amp;#43;Blog&amp;#43;Editor&amp;amp;amp;cat=all&amp;amp;amp;lver=any&amp;amp;amp;pid=1&amp;amp;amp;sort=&amp;amp;amp;pp=20&amp;amp;amp;lup=&amp;amp;amp;advanced=&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;&#xA;    &gt;https://addons.mozilla.org/zh-CN/firefox/search/?q=ScribeFire+Blog+Editor&amp;amp;cat=all&amp;amp;lver=any&amp;amp;pid=1&amp;amp;sort=&amp;amp;pp=20&amp;amp;lup=&amp;amp;advanced=&lt;/a&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;zemanta-pixie&#34;&gt;![](http://img.zemanta.com/pixy.gif?x-id=65c3bfba-1bdd-89d0-a117-0523e6fedea2)&lt;/div&gt;</description>
+        </item></channel>
+</rss>
