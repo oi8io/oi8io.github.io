@@ -5,7 +5,7 @@
 <title>遍历目录文件编码转换</title>
 
 
-<link rel="canonical" href="https://oi8io.github.io/posts/dir-file-iconv/">
+<link rel="canonical" href="https://oi8io.cn/posts/dir-file-iconv/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
@@ -14,7 +14,7 @@
 
 <link rel="stylesheet" href="/scss/style.min.6c875234350e518395efbf51958523b0852fb2215ab8cb81358f9317153eba2d.css"><meta property='og:title' content="遍历目录文件编码转换">
 <meta property='og:description' content="遍历当前目录及子目录。把所有的文件转换编码到UTF-8\n&lt; ?php //php iconv.php //exec it on root dir $path = dirname(__FILE__); tree($path); function encodeFiles($fileName) { // echo $fileName; if (file_exists($fileName)) { // Read in the contents $res = file_get_contents($fileName); $i = pathinfo($fileName); if(!in_array($i['extension'],array('js','css','php','html','htm'))){ return ; } // Just display on the screen the file being modified echo $fileName . \"---form---\"; // Convert the contents echo $encode = mb_detect_encoding($res, array(\"ASCII\", \"UTF-8\", \"GB2312\", \"GBK\")); echo \"---to---UTF-8!\\n\"; $res = iconv($encode, \"UTF-8\", $res); // Write back out to the same file file_put_contents($fileName, $res); } // } function tree($directory) { $mydir = dir($directory); while ($file = $mydir-&gt;read()) { if ((is_dir(\"$directory/$file\")) AND ($file != \".\") AND ($file != \"..\")) { tree(\"$directory/$file\"); } else { $file =\"$directory/$file\"; // echo \"&lt;li&gt;$file&lt;/li&gt;\\n\"; if(is_file($file)){ encodeFiles($file); } } } }">
-<meta property='og:url' content='https://oi8io.github.io/posts/dir-file-iconv/'>
+<meta property='og:url' content='https://oi8io.cn/posts/dir-file-iconv/'>
 <meta property='og:site_name' content='一知半解'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2014-04-11T11:20:40&#43;00:00'/><meta property='article:modified_time' content='2014-04-11T11:20:40&#43;00:00'/>
 <meta name="twitter:title" content="遍历目录文件编码转换">

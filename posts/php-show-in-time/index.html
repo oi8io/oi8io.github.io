@@ -5,7 +5,7 @@
 <title>php 实时输出显示</title>
 
 
-<link rel="canonical" href="https://oi8io.github.io/posts/php-show-in-time/">
+<link rel="canonical" href="https://oi8io.cn/posts/php-show-in-time/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
@@ -14,7 +14,7 @@
 
 <link rel="stylesheet" href="/scss/style.min.6c875234350e518395efbf51958523b0852fb2215ab8cb81358f9317153eba2d.css"><meta property='og:title' content="php 实时输出显示">
 <meta property='og:description' content="网上找了许多办法都行不通，经过半天的折腾。终于弄出来下面能够实时显示当前时间\n&lt;?php //ob_end_flush(); //关闭php缓存，或者在flush前ob_flush(); //ie下 需要先发送256个字节, firefox 1024, chrome 2048 date_default_timezone_set(\"PRC\");//设置当前时区 set_time_limit(0); for($i=1; $i&lt;=10; $i++) { ob_end_clean(); ob_start(); echo str_repeat(\" \", 4096); echo \"Now is :\". date(\"H:i:s\").\"&lt;br&gt;\"; echo str_repeat(\" \", 4096); ob_flush(); //把php缓存推送到apache去，前面已经关闭了php缓存了，这里再推就报错了 // flush(); //把apache缓存推送到浏览器去 sleep(1); }">
-<meta property='og:url' content='https://oi8io.github.io/posts/php-show-in-time/'>
+<meta property='og:url' content='https://oi8io.cn/posts/php-show-in-time/'>
 <meta property='og:site_name' content='一知半解'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2014-04-24T22:52:57&#43;00:00'/><meta property='article:modified_time' content='2014-04-24T22:52:57&#43;00:00'/>
 <meta name="twitter:title" content="php 实时输出显示">

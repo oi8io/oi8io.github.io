@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>AI on 一知半解</title>
-        <link>https://oi8io.github.io/ai/</link>
+        <link>https://oi8io.cn/ai/</link>
         <description>Recent content in AI on 一知半解</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
-        <copyright>CC BY-NC-SA 4.0</copyright><atom:link href="https://oi8io.github.io/ai/index.xml" rel="self" type="application/rss+xml" /></channel>
+        <copyright>CC BY-NC-SA 4.0</copyright><atom:link href="https://oi8io.cn/ai/index.xml" rel="self" type="application/rss+xml" /></channel>
 </rss>

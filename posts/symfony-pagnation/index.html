@@ -5,7 +5,7 @@
 <title>symfony 分页</title>
 
 
-<link rel="canonical" href="https://oi8io.github.io/posts/symfony-pagnation/">
+<link rel="canonical" href="https://oi8io.cn/posts/symfony-pagnation/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
@@ -14,7 +14,7 @@
 
 <link rel="stylesheet" href="/scss/style.min.6c875234350e518395efbf51958523b0852fb2215ab8cb81358f9317153eba2d.css"><meta property='og:title' content="symfony 分页">
 <meta property='og:description' content=" public function executeShow(sfWebRequest $request) { $this->category = Doctrine_Core::getTable('Category')->find(array($request->getParameter('id'))); $this->forward404Unless($this->category); $this->pager=new sfDoctrinePager('Content', 1); $q=Doctrine::getTable('Content') ->createQuery('c') ->where('c.category_id=?',array($this->category->getId())); $this->pager->setQuery($q); if($request->getParameter('page')) { $this->pager->setPage($request->getParameter('page')); } $this->pager->init(); } < ?php foreach($pager->getResults() as $record):?>* < ?php echo $record->getTitle();?>">
-<meta property='og:url' content='https://oi8io.github.io/posts/symfony-pagnation/'>
+<meta property='og:url' content='https://oi8io.cn/posts/symfony-pagnation/'>
 <meta property='og:site_name' content='一知半解'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2012-04-18T14:16:30&#43;00:00'/><meta property='article:modified_time' content='2012-04-18T14:16:30&#43;00:00'/>
 <meta name="twitter:title" content="symfony 分页">

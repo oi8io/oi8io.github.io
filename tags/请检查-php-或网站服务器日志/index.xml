@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>请检查 PHP 或网站服务器日志 on 一知半解</title>
-        <link>https://oi8io.github.io/tags/%E8%AF%B7%E6%A3%80%E6%9F%A5-php-%E6%88%96%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97/</link>
+        <link>https://oi8io.cn/tags/%E8%AF%B7%E6%A3%80%E6%9F%A5-php-%E6%88%96%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97/</link>
         <description>Recent content in 请检查 PHP 或网站服务器日志 on 一知半解</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
         <copyright>CC BY-NC-SA 4.0</copyright>
-        <lastBuildDate>Sat, 04 Dec 2010 09:53:57 +0000</lastBuildDate><atom:link href="https://oi8io.github.io/tags/%E8%AF%B7%E6%A3%80%E6%9F%A5-php-%E6%88%96%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 04 Dec 2010 09:53:57 +0000</lastBuildDate><atom:link href="https://oi8io.cn/tags/%E8%AF%B7%E6%A3%80%E6%9F%A5-php-%E6%88%96%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97/index.xml" rel="self" type="application/rss+xml" /><item>
             <title>phpMyAdmin – 错误 无法在发生错误时创建会话，请检查 PHP 或网站服务器日志，并正确配置 PHP 安装。</title>
-            <link>https://oi8io.github.io/posts/phpmyadmin-2002-error/</link>
+            <link>https://oi8io.cn/posts/phpmyadmin-2002-error/</link>
             <pubDate>Sat, 04 Dec 2010 09:53:57 +0000</pubDate>
-            <guid>https://oi8io.github.io/posts/phpmyadmin-2002-error/</guid>
+            <guid>https://oi8io.cn/posts/phpmyadmin-2002-error/</guid>
             <description>&lt;p&gt;方法1.开始运行、输入%windir%\temp;清空里面的所有内容，返回到windows目录，右键temp目录——属性，点到安全选项，如果没有你可以在窗口的上边点开 工具——文件夹选项——查看——将“使用单文件共享(推荐)”钱的勾去掉就有了;将此文件夹USER用户权限设置为完全控制就能解决。&lt;/p&gt;&#xA;&lt;p&gt;方法2.  在c盘windows目录下 php.ini&#xA;比如你可以找到这一行session.save_path = “某个路径”&#xA;改为 session.save_path = “yourpath”&#xA;然后要建yourpath对应的目录。&lt;/p&gt;&#xA;</description>
         </item></channel>
 </rss>
