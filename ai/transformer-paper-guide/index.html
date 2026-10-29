@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
 
 
-<link rel="stylesheet" href="/scss/style.min.f31835c895f5b8f8a641b8e422da12d6d60fa470db3c077e2db94755bd030a43.css"><meta property='og:title' content="Attention Is All You Need 论文解读">
+<link rel="stylesheet" href="/scss/style.min.e5bed8b0f1662337140c7413008b2c29ec7e1d8bc0e2817862633f1c9f4fc368.css"><meta property='og:title' content="Attention Is All You Need 论文解读">
 <meta property='og:description' content="零基础、不硬啃公式的 Transformer 论文解读：用“我爱水课”一个例子从头算到尾，讲清 RNN 的局限、位置编码、自注意力、多头注意力，以及为什么 2017 年之后才有了大模型时代。读完你就拿到了理解 GPT、Claude 等大模型的钥匙。">
 <meta property='og:url' content='https://oi8io.cn/ai/transformer-paper-guide/'>
 <meta property='og:site_name' content='一知半解'>
@@ -229,10 +229,10 @@
         <div class="widget--toc">
             <nav class="toc-nav" id="TableOfContents">
                 
-  <ol>
+  <ul>
     <li><a href="#写在前面">写在前面</a></li>
     <li><a href="#1-transformer-出现之前">1 Transformer 出现之前</a>
-      <ol>
+      <ul>
         <li><a href="#11-先搞清楚任务什么是序列转导">1.1 先搞清楚任务：什么是“序列转导”</a></li>
         <li><a href="#12-机器怎么看文字分词与词嵌入">1.2 机器怎么“看”文字：分词与词嵌入</a></li>
         <li><a href="#13-第一站前馈神经网络一口吞不下句子">1.3 第一站：前馈神经网络，一口吞不下句子</a></li>
@@ -241,52 +241,52 @@
         <li><a href="#16-第四站注意力机制写每个词时回头看重点">1.6 第四站：注意力机制，写每个词时回头看重点</a></li>
         <li><a href="#17-还剩最后一个坑串行计算">1.7 还剩最后一个坑：串行计算</a></li>
         <li><a href="#18-回到论文introduction-与-background-在说什么">1.8 回到论文：Introduction 与 Background 在说什么</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#2-transformer-是怎么做到的">2 Transformer 是怎么做到的</a>
-      <ol>
+      <ul>
         <li><a href="#21-核心思路训练时答案本来就在手上">2.1 核心思路：训练时，答案本来就在手上</a></li>
         <li><a href="#22-全景图">2.2 全景图</a></li>
         <li><a href="#23-第一步词嵌入">2.3 第一步：词嵌入</a></li>
         <li><a href="#24-第二步位置编码">2.4 第二步：位置编码</a>
-          <ol>
+          <ul>
             <li><a href="#241-为什么不直接写-123">2.4.1 为什么不直接写 1、2、3？</a></li>
             <li><a href="#242-正弦余弦编码">2.4.2 正弦余弦编码</a></li>
-          </ol>
+          </ul>
         </li>
         <li><a href="#25-第三步自注意力全文的重中之重">2.5 第三步：自注意力，全文的重中之重</a>
-          <ol>
+          <ul>
             <li><a href="#251-它要解决什么问题">2.5.1 它要解决什么问题</a></li>
             <li><a href="#252-每个词变出三个分身">2.5.2 每个词变出三个分身</a></li>
             <li><a href="#253-注意力公式">2.5.3 注意力公式</a></li>
             <li><a href="#254-手算一遍">2.5.4 手算一遍</a></li>
             <li><a href="#255-整句一起算">2.5.5 整句一起算</a></li>
             <li><a href="#256-为什么要除以-dₖ">2.5.6 为什么要除以 √dₖ</a></li>
-          </ol>
+          </ul>
         </li>
         <li><a href="#26-多头注意力八个小专家各看一个侧面">2.6 多头注意力：八个小专家，各看一个侧面</a></li>
         <li><a href="#27-残差连接层归一化与前馈网络">2.7 残差连接、层归一化与前馈网络</a></li>
         <li><a href="#28-解码器掩码与去原文里找答案">2.8 解码器：掩码，与“去原文里找答案”</a>
-          <ol>
+          <ul>
             <li><a href="#281-带掩码的自注意力防作弊">2.8.1 带掩码的自注意力：防作弊</a></li>
             <li><a href="#282-编码器-解码器注意力译文拿着问题去原文里找答案">2.8.2 编码器-解码器注意力：译文拿着问题，去原文里找答案</a></li>
-          </ol>
+          </ul>
         </li>
         <li><a href="#29-最后一步从向量到单词">2.9 最后一步：从向量到单词</a>
-          <ol>
+          <ul>
             <li><a href="#291-训练和推理的区别">2.9.1 训练和推理的区别</a></li>
-          </ol>
+          </ul>
         </li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#3-回到主线为什么这是一场革命">3 回到主线：为什么这是一场革命</a></li>
     <li><a href="#一页回顾">一页回顾</a>
-      <ol>
+      <ul>
         <li><a href="#后来的故事">后来的故事</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#参考资料">参考资料</a></li>
-  </ol>
+  </ul>
 
             </nav>
         </div>
@@ -392,10 +392,10 @@
             </summary>
             <nav class="toc-nav">
                 
-  <ol>
+  <ul>
     <li><a href="#写在前面">写在前面</a></li>
     <li><a href="#1-transformer-出现之前">1 Transformer 出现之前</a>
-      <ol>
+      <ul>
         <li><a href="#11-先搞清楚任务什么是序列转导">1.1 先搞清楚任务：什么是“序列转导”</a></li>
         <li><a href="#12-机器怎么看文字分词与词嵌入">1.2 机器怎么“看”文字：分词与词嵌入</a></li>
         <li><a href="#13-第一站前馈神经网络一口吞不下句子">1.3 第一站：前馈神经网络，一口吞不下句子</a></li>
@@ -404,52 +404,52 @@
         <li><a href="#16-第四站注意力机制写每个词时回头看重点">1.6 第四站：注意力机制，写每个词时回头看重点</a></li>
         <li><a href="#17-还剩最后一个坑串行计算">1.7 还剩最后一个坑：串行计算</a></li>
         <li><a href="#18-回到论文introduction-与-background-在说什么">1.8 回到论文：Introduction 与 Background 在说什么</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#2-transformer-是怎么做到的">2 Transformer 是怎么做到的</a>
-      <ol>
+      <ul>
         <li><a href="#21-核心思路训练时答案本来就在手上">2.1 核心思路：训练时，答案本来就在手上</a></li>
         <li><a href="#22-全景图">2.2 全景图</a></li>
         <li><a href="#23-第一步词嵌入">2.3 第一步：词嵌入</a></li>
         <li><a href="#24-第二步位置编码">2.4 第二步：位置编码</a>
-          <ol>
+          <ul>
             <li><a href="#241-为什么不直接写-123">2.4.1 为什么不直接写 1、2、3？</a></li>
             <li><a href="#242-正弦余弦编码">2.4.2 正弦余弦编码</a></li>
-          </ol>
+          </ul>
         </li>
         <li><a href="#25-第三步自注意力全文的重中之重">2.5 第三步：自注意力，全文的重中之重</a>
-          <ol>
+          <ul>
             <li><a href="#251-它要解决什么问题">2.5.1 它要解决什么问题</a></li>
             <li><a href="#252-每个词变出三个分身">2.5.2 每个词变出三个分身</a></li>
             <li><a href="#253-注意力公式">2.5.3 注意力公式</a></li>
             <li><a href="#254-手算一遍">2.5.4 手算一遍</a></li>
             <li><a href="#255-整句一起算">2.5.5 整句一起算</a></li>
             <li><a href="#256-为什么要除以-dₖ">2.5.6 为什么要除以 √dₖ</a></li>
-          </ol>
+          </ul>
         </li>
         <li><a href="#26-多头注意力八个小专家各看一个侧面">2.6 多头注意力：八个小专家，各看一个侧面</a></li>
         <li><a href="#27-残差连接层归一化与前馈网络">2.7 残差连接、层归一化与前馈网络</a></li>
         <li><a href="#28-解码器掩码与去原文里找答案">2.8 解码器：掩码，与“去原文里找答案”</a>
-          <ol>
+          <ul>
             <li><a href="#281-带掩码的自注意力防作弊">2.8.1 带掩码的自注意力：防作弊</a></li>
             <li><a href="#282-编码器-解码器注意力译文拿着问题去原文里找答案">2.8.2 编码器-解码器注意力：译文拿着问题，去原文里找答案</a></li>
-          </ol>
+          </ul>
         </li>
         <li><a href="#29-最后一步从向量到单词">2.9 最后一步：从向量到单词</a>
-          <ol>
+          <ul>
             <li><a href="#291-训练和推理的区别">2.9.1 训练和推理的区别</a></li>
-          </ol>
+          </ul>
         </li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#3-回到主线为什么这是一场革命">3 回到主线：为什么这是一场革命</a></li>
     <li><a href="#一页回顾">一页回顾</a>
-      <ol>
+      <ul>
         <li><a href="#后来的故事">后来的故事</a></li>
-      </ol>
+      </ul>
     </li>
     <li><a href="#参考资料">参考资料</a></li>
-  </ol>
+  </ul>
 
             </nav>
         </details>
