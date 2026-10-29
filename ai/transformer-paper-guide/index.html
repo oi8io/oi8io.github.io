@@ -2,7 +2,7 @@
 <html lang="zh" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="零基础、不硬啃公式的 Transformer 论文解读：用“我爱水课”一个例子从头算到尾，讲清 RNN 的局限、位置编码、自注意力、多头注意力，以及为什么 2017 年之后才有了大模型时代。读完你就拿到了理解 GPT、Claude 等大模型的钥匙。">
-<title>一文搞懂Transformer</title>
+<title>Attention Is All You Need 论文解读</title>
 
 
 <link rel="canonical" href="https://oi8io.cn/ai/transformer-paper-guide/">
@@ -12,12 +12,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
 
 
-<link rel="stylesheet" href="/scss/style.min.f31835c895f5b8f8a641b8e422da12d6d60fa470db3c077e2db94755bd030a43.css"><meta property='og:title' content="一文搞懂Transformer">
+<link rel="stylesheet" href="/scss/style.min.f31835c895f5b8f8a641b8e422da12d6d60fa470db3c077e2db94755bd030a43.css"><meta property='og:title' content="Attention Is All You Need 论文解读">
 <meta property='og:description' content="零基础、不硬啃公式的 Transformer 论文解读：用“我爱水课”一个例子从头算到尾，讲清 RNN 的局限、位置编码、自注意力、多头注意力，以及为什么 2017 年之后才有了大模型时代。读完你就拿到了理解 GPT、Claude 等大模型的钥匙。">
 <meta property='og:url' content='https://oi8io.cn/ai/transformer-paper-guide/'>
 <meta property='og:site_name' content='一知半解'>
 <meta property='og:type' content='article'><meta property='article:section' content='Ai' /><meta property='article:tag' content='Transformer' /><meta property='article:tag' content='论文解读' /><meta property='article:tag' content='深度学习' /><meta property='article:tag' content='Attention Is All You Need' /><meta property='article:tag' content='大模型' /><meta property='article:tag' content='机器学习' /><meta property='article:published_time' content='2026-10-29T00:42:00&#43;08:00'/><meta property='article:modified_time' content='2026-10-29T00:42:00&#43;08:00'/><meta property='og:image' content='https://oi8io.cn/ai/transformer-paper-guide/images/cover.jpg' />
-<meta name="twitter:title" content="一文搞懂Transformer">
+<meta name="twitter:title" content="Attention Is All You Need 论文解读">
 <meta name="twitter:description" content="零基础、不硬啃公式的 Transformer 论文解读：用“我爱水课”一个例子从头算到尾，讲清 RNN 的局限、位置编码、自注意力、多头注意力，以及为什么 2017 年之后才有了大模型时代。读完你就拿到了理解 GPT、Claude 等大模型的钥匙。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://oi8io.cn/ai/transformer-paper-guide/images/cover.jpg' />
     </head>
@@ -302,7 +302,7 @@
     <header class="article-header">
     <div class="article-image">
         <a href="/ai/transformer-paper-guide/">
-            <img alt="Featured image of post 一文搞懂Transformer" height="1536" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/cover.jpg" srcset="/ai/transformer-paper-guide/images/cover_hu_30112bcae1079d1a.jpg 800w, /ai/transformer-paper-guide/images/cover_hu_d89a83f83359204d.jpg 1600w, /ai/transformer-paper-guide/images/cover_hu_973099d84b9c7376.jpg 2400w, /ai/transformer-paper-guide/images/cover.jpg 2730w" width="2730">
+            <img alt="Featured image of post Attention Is All You Need 论文解读" height="1536" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/cover.jpg" srcset="/ai/transformer-paper-guide/images/cover_hu_30112bcae1079d1a.jpg 800w, /ai/transformer-paper-guide/images/cover_hu_d89a83f83359204d.jpg 1600w, /ai/transformer-paper-guide/images/cover_hu_973099d84b9c7376.jpg 2400w, /ai/transformer-paper-guide/images/cover.jpg 2730w" width="2730">
         </a>
     </div>
     
@@ -323,7 +323,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/ai/transformer-paper-guide/">一文搞懂Transformer</a>
+            <a href="/ai/transformer-paper-guide/">Attention Is All You Need 论文解读</a>
         </h2>
     
         
@@ -366,7 +366,7 @@
 
 
                     <time class="article-time--reading">
-                        阅读时长: 29 分钟
+                        阅读时长: 28 分钟
                     </time>
                 
             </div>
@@ -467,10 +467,7 @@
     </blockquote>
 <hr>
 <h2 id="写在前面">写在前面
-</h2><p>这篇文章的讲解思路来自 B 站 UP 主「堂吉诃德拉曼查的英豪」解读这篇论文的<a class="link" href="https://www.bilibili.com/video/BV1xoJwzDESD/"  target="_blank" rel="noopener"
-    >视频</a>，并对照论文原文做了补充和校正。文中的配图都是重新绘制的。</p>
-<p>文章假设你会编程、对矩阵乘法有个大概印象，但没系统学过深度学习。神经网络、词向量、softmax 这些概念，用到的时候都会从头讲。</p>
-<p>全文会反复用到视频里的一个例子：把中文 <strong>“我爱水课”</strong> 翻译成英文 <strong>“I love easy courses”</strong>。“水课”是大学生的黑话，意思是轻松好过的课。这个例子有个坑：“水”单独看是 water，只有结合后面的“课”，才知道它在这里是 easy。机器能不能跳过这个坑，正好检验它是不是真的“读懂了上下文”。</p>
+</h2><p>全文会反复用到视频里的一个例子：把中文 <strong>“我爱水课”</strong> 翻译成英文 <strong>“I love easy courses”</strong>。“水课”是大学生的黑话，意思是轻松好过的课。这个例子有个坑：“水”单独看是 water，只有结合后面的“课”，才知道它在这里是 easy。机器能不能跳过这个坑，正好检验它是不是真的“读懂了上下文”。</p>
 <p>论文本身的结构是：先讲以前的模型有什么问题（第 1、2 节），再讲 Transformer 的结构（第 3 节），然后回答“为什么用自注意力”（第 4 节），最后是训练和实验结果。我们也按这个顺序走，只是在读论文之前，先把它默认你懂的那些背景补上——论文总是默认你什么都懂。</p>
 <p><img alt="从 FNN 到 Transformer 的演进路线" class="gallery-image" data-flex-basis="750px" data-flex-grow="312" height="640" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/01-roadmap.png" srcset="/ai/transformer-paper-guide/images/transformer/01-roadmap_hu_8b51fdb7b38bbbfa.png 800w, /ai/transformer-paper-guide/images/transformer/01-roadmap_hu_d3a941558926ddeb.png 1600w, /ai/transformer-paper-guide/images/transformer/01-roadmap.png 2000w" width="2000"></p>
 <p>上面这张图就是前半篇的地图。每一代模型都解决了上一代的一些问题，又留下新的问题。Transformer 的出现，就是为了填上最后那个坑。</p>
