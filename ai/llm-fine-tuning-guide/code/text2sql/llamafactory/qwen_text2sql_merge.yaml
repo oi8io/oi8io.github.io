@@ -1,0 +1,10 @@
+model_name_or_path: Qwen/Qwen2.5-Coder-1.5B-Instruct
+adapter_name_or_path: saves/qwen2.5-coder-1.5b/lora/text2sql
+template: qwen
+finetuning_type: lora
+trust_remote_code: true
+
+export_dir: models/qwen2.5-coder-1.5b-text2sql
+export_size: 5                 # 每个权重分片最大 5 GB
+export_device: cpu             # 用 CPU 合并，不占显存
+export_legacy_format: false    # 保存为 safetensors 格式

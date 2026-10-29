@@ -1,0 +1,43 @@
+### 模型
+model_name_or_path: Qwen/Qwen2.5-Coder-1.5B-Instruct
+trust_remote_code: true
+
+### 方法：LoRA 监督微调
+stage: sft                    # 改成 dpo 就是 DPO 训练
+do_train: true
+finetuning_type: lora
+lora_rank: 16                 # r
+lora_alpha: 32                # 实际缩放 alpha / r = 2
+lora_dropout: 0.05
+lora_target: all              # 挂在所有线性层上：q/k/v/o + gate/up/down
+
+### 数据
+dataset: text2sql_train
+template: qwen                # 对话模板，必须和模型匹配
+cutoff_len: 1024              # 最长样本约 600 token，留足余量
+overwrite_cache: true
+preprocessing_num_workers: 4
+
+### 输出
+output_dir: saves/qwen2.5-coder-1.5b/lora/text2sql
+logging_steps: 5
+save_steps: 50
+plot_loss: true               # 训练结束后自动画出损失曲线
+overwrite_output_dir: true
+report_to: none
+
+### 训练
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 2   # 等效 batch = 16
+learning_rate: 2.0e-4            # LoRA 常用 1e-4 ~ 2e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+max_grad_norm: 1.0
+bf16: true
+
+### 验证：盯着验证损失，而不是训练损失
+val_size: 0.05
+per_device_eval_batch_size: 8
+eval_strategy: steps
+eval_steps: 10

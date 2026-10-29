@@ -1,0 +1,11 @@
+{
+  "text2sql_train": {
+    "file_name": "text2sql_train.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system"
+    }
+  }
+}

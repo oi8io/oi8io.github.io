@@ -520,10 +520,9 @@
 <li>以此类推。</li>
 </ul>
 <p>写成公式就是：</p>
-<p>$$
+$$
 h_t = g(W x_t + U h_{t-1}), \qquad y_t = g(V h_t)
-$$</p>
-<p>$x_t$ 是第 $t$ 步的输入，$h_t$ 是第 $t$ 步的“记忆”（论文里叫隐藏状态 hidden state），$y_t$ 是输出；$W$、$U$、$V$ 是三个权重矩阵，<strong>每一步用的都是同一套</strong>；$g$ 是激活函数，给网络引入非线性。</p>
+$$<p>$x_t$ 是第 $t$ 步的输入，$h_t$ 是第 $t$ 步的“记忆”（论文里叫隐藏状态 hidden state），$y_t$ 是输出；$W$、$U$、$V$ 是三个权重矩阵，<strong>每一步用的都是同一套</strong>；$g$ 是激活函数，给网络引入非线性。</p>
 <p>所以每一步其实有两个产出：一个是给下一步用的记忆 $h_t$，负责把前面读过的信息往后带；一个是这一步实际的输出 $y_t$。</p>
 <p>RNN 一口气解决了 FNN 的三个问题：</p>
 <ul>
@@ -550,10 +549,9 @@ $$</p>
 <p>具体做法是，保留编码器每一步的记忆 $h_1, h_2, h_3, h_4$，解码器每写一个词时，都重新给这几个记忆分配一组权重，再加权求和，得到这一步专属的上下文：</p>
 <p><img alt="注意力机制：生成 easy 时的权重分配" class="gallery-image" data-flex-basis="461px" data-flex-grow="192" height="1040" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/06-attention.png" srcset="/ai/transformer-paper-guide/images/transformer/06-attention_hu_16eebd15f1d541e9.png 800w, /ai/transformer-paper-guide/images/transformer/06-attention_hu_c021c397495e774.png 1600w, /ai/transformer-paper-guide/images/transformer/06-attention.png 2000w" width="2000"></p>
 <p>比如生成 “easy” 这一步，我们希望模型同时注意到“水”和“课”，别把“水”孤立地译成 water，于是给它们都分配较大的权重：</p>
-<p>$$
-C_2 = 0.1,h_1 + 0.1,h_2 + 0.4,h_3 + 0.4,h_4
-$$</p>
-<p>一般地，第 $i$ 步的上下文是 $C_i = \sum_j \alpha_{ij} h_j$，其中权重 $\alpha_{ij}$ 都是非负数，加起来等于 1。这些权重不是人定的，而是模型根据“当前要写什么”和“原文每个位置是什么”自己算出来的。</p>
+$$
+C_2 = 0.1\,h_1 + 0.1\,h_2 + 0.4\,h_3 + 0.4\,h_4
+$$<p>一般地，第 $i$ 步的上下文是 $C_i = \sum_j \alpha_{ij} h_j$，其中权重 $\alpha_{ij}$ 都是非负数，加起来等于 1。这些权重不是人定的，而是模型根据“当前要写什么”和“原文每个位置是什么”自己算出来的。</p>
 <p>这一招一次解决了两个问题：</p>
 <ul>
 <li><strong>遗忘问题缓解了</strong>：哪怕是句子开头的词，只要它重要，就能直接分到大权重，不用再经历层层传递的稀释；</li>
@@ -687,11 +685,10 @@ $$</p>
 <p>所以论文的做法是：<strong>给每个位置也生成一个 512 维的向量</strong>，然后直接加到词向量上。</p>
 <h4 id="242-正弦余弦编码">2.4.2 正弦余弦编码
 </h4><p>这个位置向量是用正弦、余弦函数算出来的：</p>
-<p>$$
-PE_{(pos,,2i)} = \sin!\left(\frac{pos}{10000^{2i/d_{model}}}\right), \qquad
-PE_{(pos,,2i+1)} = \cos!\left(\frac{pos}{10000^{2i/d_{model}}}\right)
-$$</p>
-<p>$pos$ 是位置（第几个词），$i$ 是维度编号。偶数维用 sin，奇数维用 cos，不同维度的波长不同：从最短的 $2\pi$ 一路增长到最长约 $10000 \cdot 2\pi$。</p>
+$$
+PE_{(pos,\,2i)} = \sin\!\left(\frac{pos}{10000^{2i/d_{model}}}\right), \qquad
+PE_{(pos,\,2i+1)} = \cos\!\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+$$<p>$pos$ 是位置（第几个词），$i$ 是维度编号。偶数维用 sin，奇数维用 cos，不同维度的波长不同：从最短的 $2\pi$ 一路增长到最长约 $10000 \cdot 2\pi$。</p>
 <p>公式看着吓人，画出来就直观了：</p>
 <p><img alt="位置编码热力图" class="gallery-image" data-flex-basis="407px" data-flex-grow="169" height="1140" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/09-positional-encoding.png" srcset="/ai/transformer-paper-guide/images/transformer/09-positional-encoding_hu_fe238439faa7ec54.png 800w, /ai/transformer-paper-guide/images/transformer/09-positional-encoding_hu_98801fd1f35094c3.png 1600w, /ai/transformer-paper-guide/images/transformer/09-positional-encoding.png 1936w" width="1936"></p>
 <p>每一行是一个位置的编码。靠左的维度频率高，相邻位置之间变化剧烈，像钟表的<strong>秒针</strong>；靠右的维度频率低，要隔很多个位置才变一点，像<strong>时针</strong>。把所有指针的读数合在一起，就能唯一确定“现在几点”——也就是唯一确定这个位置。这其实和二进制计数很像：最低位每次都翻转，越高的位翻转得越慢。</p>
@@ -739,10 +736,9 @@ $$</p>
 </table></div>
 <p>所有数都在 −1 到 1 之间，不会随句子变长而爆炸。论文还给出了选择它的一个理由：对任意固定的偏移 $k$，$PE_{pos+k}$ 都可以表示成 $PE_{pos}$ 的线性函数（这是三角函数和角公式的性质），作者推测这能让模型更容易学会按“相对位置”去关注。论文同时说明，他们也试过让模型自己学一组位置向量（后来 BERT 就是这么做的），效果几乎一样；选正弦版本，是因为它也许能推广到比训练时更长的句子。</p>
 <p>最后，位置编码和词嵌入<strong>直接相加</strong>：</p>
-<p>$$
+$$
 x_{\text{水}} = \text{Embedding}(\text{水}) + PE_{(2)}
-$$</p>
-<p>就像给每个词贴了一个位置标签。现在，每个词的向量里既有“我是谁”，也有“我在哪”。还差最后一样：“我在这句话里是什么意思”。</p>
+$$<p>就像给每个词贴了一个位置标签。现在，每个词的向量里既有“我是谁”，也有“我在哪”。还差最后一样：“我在这句话里是什么意思”。</p>
 <h3 id="25-第三步自注意力全文的重中之重">2.5 第三步：自注意力，全文的重中之重
 </h3><h4 id="251-它要解决什么问题">2.5.1 它要解决什么问题
 </h4><p>回到词嵌入的那张地图。在词嵌入表里，“水”只有一个固定的位置——不管出现在哪句话里，查表得到的都是同一个向量。这显然不合理：</p>
@@ -766,10 +762,9 @@ $$</p>
 <p>不只是“水”，句子里每个词都会得到自己的 q、k、v。而且这一步不用一个个算：把整句的 4 × 512 矩阵 $X$ 乘一次 $W^Q$，就同时得到了所有词的 Query，K 和 V 同理。这就是“并行”二字落到实处的样子——就是几次大矩阵乘法。</p>
 <h4 id="253-注意力公式">2.5.3 注意力公式
 </h4><p>拿到 Q、K、V 之后，计算就是论文里最有名的那个公式，<strong>缩放点积注意力</strong>（Scaled Dot-Product Attention）：</p>
-<p>$$
-\text{Attention}(Q, K, V) = \text{softmax}!\left(\frac{QK^{\top}}{\sqrt{d_k}}\right)V
-$$</p>
-<p>拆开来只有四步：</p>
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^{\top}}{\sqrt{d_k}}\right)V
+$$<p>拆开来只有四步：</p>
 <ol>
 <li><strong>打分</strong>：用每个词的 Query 和所有词的 Key 做点积。点积越大，说明“问题”和“标签”越匹配；</li>
 <li><strong>缩放</strong>：除以 $\sqrt{d_k}$（$d_k$ 是 Key 向量的维度），原因稍后讲；</li>
@@ -803,18 +798,15 @@ $$</p>
 <p><strong>① 打分</strong>。点积就是对应位置相乘再相加，比如 $q_{\text{水}} \cdot k_{\text{课}} = 1\times1 + 0\times0 + 1\times3 + 0\times0 = 4$。四个分数是 $[1, 1, 4, 4]$。</p>
 <p><strong>② 缩放</strong>。都除以 2，得到 $[0.5, 0.5, 2, 2]$。</p>
 <p><strong>③ softmax</strong>。softmax 的做法是：先对每个数取指数 $e^x$，再除以它们的总和。</p>
-<p>$$
+$$
 e^{0.5} \approx 1.649,\quad e^{2} \approx 7.389,\quad \text{总和} = 2\times1.649 + 2\times7.389 = 18.076
-$$</p>
-<p>$$
+$$$$
 \text{权重} = \left[\tfrac{1.649}{18.076},\ \tfrac{1.649}{18.076},\ \tfrac{7.389}{18.076},\ \tfrac{7.389}{18.076}\right] \approx [0.09,\ 0.09,\ 0.41,\ 0.41]
-$$</p>
-<p>取指数有两个好处：结果一定是正数；原来大的分数会被拉得更大，差距更明显。</p>
+$$<p>取指数有两个好处：结果一定是正数；原来大的分数会被拉得更大，差距更明显。</p>
 <p><strong>④ 加权求和</strong>。</p>
-<p>$$
-\text{新的“水”} = 0.09,v_{\text{我}} + 0.09,v_{\text{爱}} + 0.41,v_{\text{水}} + 0.41,v_{\text{课}}
-$$</p>
-<p>新的“水”向量里，有四成多的信息来自“课”。它已经不是孤零零的 water，而是带着“课”的语境的那个“水”。这和第 1.6 节注意力机制的加权平均是同一个思想，只不过这次是<strong>句子内部的词互相关注</strong>，所以叫“自”注意力（self-attention）：Q、K、V 全都来自同一个句子自己。</p>
+$$
+\text{新的“水”} = 0.09\,v_{\text{我}} + 0.09\,v_{\text{爱}} + 0.41\,v_{\text{水}} + 0.41\,v_{\text{课}}
+$$<p>新的“水”向量里，有四成多的信息来自“课”。它已经不是孤零零的 water，而是带着“课”的语境的那个“水”。这和第 1.6 节注意力机制的加权平均是同一个思想，只不过这次是<strong>句子内部的词互相关注</strong>，所以叫“自”注意力（self-attention）：Q、K、V 全都来自同一个句子自己。</p>
 <h4 id="255-整句一起算">2.5.5 整句一起算
 </h4><p>上面只算了“水”这一行。实际计算中，四个词是同时算的：$QK^\top$ 一次就得到一张 4 × 4 的分数表，softmax 按行归一化，再乘以 $V$，所有词的新向量一起出炉。</p>
 <p><img alt="一张 4×4 的注意力权重表" class="gallery-image" data-flex-basis="295px" data-flex-grow="123" height="1040" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/13-attention-matrix.png" srcset="/ai/transformer-paper-guide/images/transformer/13-attention-matrix_hu_843720c2eb0fadf1.png 800w, /ai/transformer-paper-guide/images/transformer/13-attention-matrix.png 1280w" width="1280"></p>
@@ -836,32 +828,28 @@ $$</p>
 <li>最后再乘一个 512 × 512 的矩阵 $W^O$，得到最终输出。</li>
 </ol>
 <p>写成公式是：</p>
-<p>$$
-\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_8),W^O,\qquad \text{head}_i = \text{Attention}(QW^Q_i,\ KW^K_i,\ VW^V_i)
-$$</p>
-<p>这里自然冒出三个问题。</p>
+$$
+\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_8)\,W^O,\qquad \text{head}_i = \text{Attention}(QW^Q_i,\ KW^K_i,\ VW^V_i)
+$$<p>这里自然冒出三个问题。</p>
 <p><strong>为什么要拆成多个头？</strong> 回想一下 512 维空间：你可以想象每个方向代表词的某种特征。视频里举了个很生动的例子，用 512 维描述“汉堡”和“菠萝”：有的维度表示甜不甜、辣不辣、咸不咸（口味），有的表示脂肪、碳水的含量（热量），有的表示维生素含量（营养）。从 512 维投影到 64 维，相当于每个头只抽取出一个“子空间”来看：第一个头可能只关注口味，第二个只关注热量，第三个只关注营养。</p>
 <p>放到语言上，就是每个头可以学着问不同的问题：一个头关心“附近有没有名词”，一个头关心“谁是主语”，一个头关心“哪个词在修饰我”。单头注意力只能得出一组权重，很难同时兼顾这么多种关系；多头则让模型能<strong>从多个角度同时理解</strong>同一句话，论文原话是 “jointly attend to information from different representation subspaces at different positions”。</p>
 <p><strong>为什么拼起来之后还要乘一个 $W^O$？</strong> 拼接只是把 8 份结果首尾摆在一起，每一份都是在自己的小子空间里独立算出来的，彼此之间没有任何交流。视频打了个比方：8 张低清的小图拼在一起，并不等于一张高清大图。$W^O$ 的作用就是学着把这 8 个视角的信息<strong>融合</strong>起来，重新投影成一个完整的 512 维表示。</p>
 <p><strong>为什么是 8 个 64 维，而不是 8 个 512 维？</strong> 算一笔账就明白了：</p>
-<p>$$
+$$
 8 \times (512 \times 64 \times 3) = 786{,}432 = 1 \times (512 \times 512 \times 3)
-$$</p>
-<p>8 个 64 维的小头，参数量和计算量跟 1 个 512 维的大头<strong>完全一样</strong>。如果每个头都用 512 维，计算量就要翻 8 倍。拆成 8 × 64，等于不花额外成本，白得了 8 个视角。至于为什么偏偏是 512、8、64，这些都是超参数，是作者试出来效果好的取值，换成别的也能训练。</p>
+$$<p>8 个 64 维的小头，参数量和计算量跟 1 个 512 维的大头<strong>完全一样</strong>。如果每个头都用 512 维，计算量就要翻 8 倍。拆成 8 × 64，等于不花额外成本，白得了 8 个视角。至于为什么偏偏是 512、8、64，这些都是超参数，是作者试出来效果好的取值，换成别的也能训练。</p>
 <h3 id="27-残差连接层归一化与前馈网络">2.7 残差连接、层归一化与前馈网络
 </h3><p>多头注意力之后，紧跟着一个“<strong>Add &amp; Norm</strong>”，然后是前馈网络，再一个 “Add &amp; Norm”。</p>
 <p><img alt="残差+归一化，以及逐位置前馈网络" class="gallery-image" data-flex-basis="558px" data-flex-grow="232" height="860" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/15-addnorm-ffn.png" srcset="/ai/transformer-paper-guide/images/transformer/15-addnorm-ffn_hu_f175ebe367c5fedf.png 800w, /ai/transformer-paper-guide/images/transformer/15-addnorm-ffn_hu_c312371b947df8d2.png 1600w, /ai/transformer-paper-guide/images/transformer/15-addnorm-ffn.png 2000w" width="2000"></p>
 <p><strong>残差连接</strong>（Residual Connection）就是图里那条“抄近路”的虚线：把子层的输入 $x$ 原样抄一份，直接加到子层的输出上。</p>
-<p>$$
+$$
 \text{输出} = \text{LayerNorm}\big(x + \text{Sublayer}(x)\big)
-$$</p>
-<p>为什么要这样？设想某个子层学得很差，把输入扭曲得面目全非，后面的层再怎么努力，拿到的也只是一堆被搅乱的东西。有了残差连接，不管这个子层学得如何，原始信息都有一条保底通道能继续往下传。子层只需要学“在原来基础上补充点什么”，而不是“从零重建一切”。这在网络很深时尤其关键，Transformer 的编码器和解码器加起来有 30 个子层，靠的就是它才能稳定训练。</p>
+$$<p>为什么要这样？设想某个子层学得很差，把输入扭曲得面目全非，后面的层再怎么努力，拿到的也只是一堆被搅乱的东西。有了残差连接，不管这个子层学得如何，原始信息都有一条保底通道能继续往下传。子层只需要学“在原来基础上补充点什么”，而不是“从零重建一切”。这在网络很深时尤其关键，Transformer 的编码器和解码器加起来有 30 个子层，靠的就是它才能稳定训练。</p>
 <p><strong>层归一化</strong>（Layer Normalization）则是把每个词向量的数值重新调整到均值 0、方差 1 附近，让数值保持稳定，方便训练。</p>
 <p><strong>前馈网络</strong>（Feed-Forward Network）就是第 1.3 节那个最朴素的两层网络：</p>
-<p>$$
-\text{FFN}(x) = \max(0,\ xW_1 + b_1),W_2 + b_2
-$$</p>
-<p>先把 512 维撑大到 2048 维，过一个 ReLU（负数变 0，正数不变），再压回 512 维。论文强调它是“逐位置”（position-wise）的：<strong>每个词单独、各自</strong>过一遍同一个网络，词与词之间在这里不交流。</p>
+$$
+\text{FFN}(x) = \max(0,\ xW_1 + b_1)\,W_2 + b_2
+$$<p>先把 512 维撑大到 2048 维，过一个 ReLU（负数变 0，正数不变），再压回 512 维。论文强调它是“逐位置”（position-wise）的：<strong>每个词单独、各自</strong>过一遍同一个网络，词与词之间在这里不交流。</p>
 <p>可以这么分工理解：注意力负责“词与词之间交流信息”，前馈网络负责“每个词把收集到的信息自己消化一下”，并引入更多的非线性和参数，增强模型的表达能力。</p>
 <p>经过“注意力 → Add &amp; Norm → FFN → Add &amp; Norm”，形状依然是 4 × 512，于是可以再送进下一层。重复 6 次，编码器的工作就完成了：最终得到的 4 × 512 矩阵，每一行都是一个融合了<strong>词义、位置和整句上下文</strong>的向量。</p>
 <h3 id="28-解码器掩码与去原文里找答案">2.8 解码器：掩码，与“去原文里找答案”
