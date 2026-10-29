@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="零基础、不硬啃公式的 Transformer 论文解读：用“我爱水课”一个例子从头算到尾，讲清 RNN 的局限、位置编码、自注意力、多头注意力，以及为什么 2017 年之后才有了大模型时代。读完你就拿到了理解 GPT、Claude 等大模型的钥匙。">
 <title>一文搞懂Transformer</title>
 
 
-<link rel="canonical" href="http://localhost:1313/ai/transformer-paper-guide/">
+<link rel="canonical" href="https://oi8io.cn/ai/transformer-paper-guide/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
@@ -14,12 +14,12 @@
 
 <link rel="stylesheet" href="/scss/style.min.f31835c895f5b8f8a641b8e422da12d6d60fa470db3c077e2db94755bd030a43.css"><meta property='og:title' content="一文搞懂Transformer">
 <meta property='og:description' content="零基础、不硬啃公式的 Transformer 论文解读：用“我爱水课”一个例子从头算到尾，讲清 RNN 的局限、位置编码、自注意力、多头注意力，以及为什么 2017 年之后才有了大模型时代。读完你就拿到了理解 GPT、Claude 等大模型的钥匙。">
-<meta property='og:url' content='http://localhost:1313/ai/transformer-paper-guide/'>
+<meta property='og:url' content='https://oi8io.cn/ai/transformer-paper-guide/'>
 <meta property='og:site_name' content='一知半解'>
-<meta property='og:type' content='article'><meta property='article:section' content='Ai' /><meta property='article:tag' content='Transformer' /><meta property='article:tag' content='论文解读' /><meta property='article:tag' content='深度学习' /><meta property='article:tag' content='Attention Is All You Need' /><meta property='article:tag' content='大模型' /><meta property='article:tag' content='机器学习' /><meta property='article:published_time' content='2026-10-29T00:42:00&#43;08:00'/><meta property='article:modified_time' content='2026-10-29T00:42:00&#43;08:00'/><meta property='og:image' content='http://localhost:1313/ai/transformer-paper-guide/images/transformer/08-architecture.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Ai' /><meta property='article:tag' content='Transformer' /><meta property='article:tag' content='论文解读' /><meta property='article:tag' content='深度学习' /><meta property='article:tag' content='Attention Is All You Need' /><meta property='article:tag' content='大模型' /><meta property='article:tag' content='机器学习' /><meta property='article:published_time' content='2026-10-29T00:42:00&#43;08:00'/><meta property='article:modified_time' content='2026-10-29T00:42:00&#43;08:00'/><meta property='og:image' content='https://oi8io.cn/ai/transformer-paper-guide/images/cover.jpg' />
 <meta name="twitter:title" content="一文搞懂Transformer">
 <meta name="twitter:description" content="零基础、不硬啃公式的 Transformer 论文解读：用“我爱水课”一个例子从头算到尾，讲清 RNN 的局限、位置编码、自注意力、多头注意力，以及为什么 2017 年之后才有了大模型时代。读完你就拿到了理解 GPT、Claude 等大模型的钥匙。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/ai/transformer-paper-guide/images/transformer/08-architecture.png' />
+    <meta name="twitter:image" content='https://oi8io.cn/ai/transformer-paper-guide/images/cover.jpg' />
     </head>
     <body class="
     article-page
@@ -302,7 +302,7 @@
     <header class="article-header">
     <div class="article-image">
         <a href="/ai/transformer-paper-guide/">
-            <img alt="Featured image of post 一文搞懂Transformer" height="1860" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/08-architecture.png" srcset="/ai/transformer-paper-guide/images/transformer/08-architecture_hu_4e1bf15f89e21fb.png 800w, /ai/transformer-paper-guide/images/transformer/08-architecture_hu_b74cf5a17235d32.png 1600w, /ai/transformer-paper-guide/images/transformer/08-architecture.png 2000w" width="2000">
+            <img alt="Featured image of post 一文搞懂Transformer" height="1536" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/cover.jpg" srcset="/ai/transformer-paper-guide/images/cover_hu_30112bcae1079d1a.jpg 800w, /ai/transformer-paper-guide/images/cover_hu_d89a83f83359204d.jpg 1600w, /ai/transformer-paper-guide/images/cover_hu_973099d84b9c7376.jpg 2400w, /ai/transformer-paper-guide/images/cover.jpg 2730w" width="2730">
         </a>
     </div>
     
@@ -1096,7 +1096,7 @@ $$</p>
             </main>
         </div>
         
-<script type="text/javascript" src="/ts/main.25cdf802fec377add5048efcbecf61fe73858127f313964f65f8d6e0094c93f4.js" defer></script>
+<script type="text/javascript" src="/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js" defer></script>
 
 <style>
 #search-modal {

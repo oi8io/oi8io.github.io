@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on 一知半解</title>
-        <link>http://localhost:1313/categories/</link>
+        <link>https://oi8io.cn/categories/</link>
         <description>Recent content in Categories on 一知半解</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh</language>
         <copyright>CC BY-NC-SA 4.0</copyright>
-        <lastBuildDate>Thu, 29 Oct 2026 00:42:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 29 Oct 2026 00:42:00 +0800</lastBuildDate><atom:link href="https://oi8io.cn/categories/index.xml" rel="self" type="application/rss+xml" /><item>
             <title>AI</title>
-            <link>http://localhost:1313/categories/ai/</link>
+            <link>https://oi8io.cn/categories/ai/</link>
             <pubDate>Thu, 29 Oct 2026 00:42:00 +0800</pubDate>
-            <guid>http://localhost:1313/categories/ai/</guid>
+            <guid>https://oi8io.cn/categories/ai/</guid>
             <description></description>
         </item></channel>
 </rss>

@@ -2,49 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/ai/</loc>
+    <loc>https://oi8io.cn/ai/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/ai/</loc>
+    <loc>https://oi8io.cn/categories/ai/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/attention-is-all-you-need/</loc>
+    <loc>https://oi8io.cn/tags/attention-is-all-you-need/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://oi8io.cn/categories/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://oi8io.cn/tags/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/transformer/</loc>
+    <loc>https://oi8io.cn/tags/transformer/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
+    <loc>https://oi8io.cn/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://oi8io.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</loc>
+    <loc>https://oi8io.cn/tags/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://oi8io.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ai/transformer-paper-guide/</loc>
+    <loc>https://oi8io.cn/ai/transformer-paper-guide/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://oi8io.cn/</loc>
     <lastmod>2026-10-29T00:42:00+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://oi8io.cn/about/</loc>
     <lastmod>2020-07-28T20:22:25+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://oi8io.cn/posts/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://oi8io.cn/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/project/</loc>
+    <loc>https://oi8io.cn/project/</loc>
   </url>
 </urlset>
