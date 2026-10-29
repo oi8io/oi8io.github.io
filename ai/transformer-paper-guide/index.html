@@ -231,55 +231,55 @@
                 
   <ol>
     <li><a href="#写在前面">写在前面</a></li>
-    <li><a href="#第一部分transformer-出现之前">第一部分：Transformer 出现之前</a>
+    <li><a href="#1-transformer-出现之前">1 Transformer 出现之前</a>
       <ol>
-        <li><a href="#1-先搞清楚任务什么是序列转导">1. 先搞清楚任务：什么是“序列转导”</a></li>
-        <li><a href="#2-机器怎么看文字分词与词嵌入">2. 机器怎么“看”文字：分词与词嵌入</a></li>
-        <li><a href="#3-第一站前馈神经网络一口吞不下句子">3. 第一站：前馈神经网络，一口吞不下句子</a></li>
-        <li><a href="#4-第二站rnn一个词一个词地读">4. 第二站：RNN，一个词一个词地读</a></li>
-        <li><a href="#5-第三站编码器-解码器先读完再写">5. 第三站：编码器-解码器，先读完再写</a></li>
-        <li><a href="#6-第四站注意力机制写每个词时回头看重点">6. 第四站：注意力机制，写每个词时回头看重点</a></li>
-        <li><a href="#7-还剩最后一个坑串行计算">7. 还剩最后一个坑：串行计算</a></li>
-        <li><a href="#8-回到论文introduction-与-background-在说什么">8. 回到论文：Introduction 与 Background 在说什么</a></li>
+        <li><a href="#11-先搞清楚任务什么是序列转导">1.1 先搞清楚任务：什么是“序列转导”</a></li>
+        <li><a href="#12-机器怎么看文字分词与词嵌入">1.2 机器怎么“看”文字：分词与词嵌入</a></li>
+        <li><a href="#13-第一站前馈神经网络一口吞不下句子">1.3 第一站：前馈神经网络，一口吞不下句子</a></li>
+        <li><a href="#14-第二站rnn一个词一个词地读">1.4 第二站：RNN，一个词一个词地读</a></li>
+        <li><a href="#15-第三站编码器-解码器先读完再写">1.5 第三站：编码器-解码器，先读完再写</a></li>
+        <li><a href="#16-第四站注意力机制写每个词时回头看重点">1.6 第四站：注意力机制，写每个词时回头看重点</a></li>
+        <li><a href="#17-还剩最后一个坑串行计算">1.7 还剩最后一个坑：串行计算</a></li>
+        <li><a href="#18-回到论文introduction-与-background-在说什么">1.8 回到论文：Introduction 与 Background 在说什么</a></li>
       </ol>
     </li>
-    <li><a href="#第二部分transformer-是怎么做到的">第二部分：Transformer 是怎么做到的</a>
+    <li><a href="#2-transformer-是怎么做到的">2 Transformer 是怎么做到的</a>
       <ol>
-        <li><a href="#9-核心思路训练时答案本来就在手上">9. 核心思路：训练时，答案本来就在手上</a></li>
-        <li><a href="#10-全景图">10. 全景图</a></li>
-        <li><a href="#11-第一步词嵌入">11. 第一步：词嵌入</a></li>
-        <li><a href="#12-第二步位置编码">12. 第二步：位置编码</a>
+        <li><a href="#21-核心思路训练时答案本来就在手上">2.1 核心思路：训练时，答案本来就在手上</a></li>
+        <li><a href="#22-全景图">2.2 全景图</a></li>
+        <li><a href="#23-第一步词嵌入">2.3 第一步：词嵌入</a></li>
+        <li><a href="#24-第二步位置编码">2.4 第二步：位置编码</a>
           <ol>
-            <li><a href="#为什么不直接写-123">为什么不直接写 1、2、3？</a></li>
-            <li><a href="#正弦余弦编码">正弦余弦编码</a></li>
+            <li><a href="#241-为什么不直接写-123">2.4.1 为什么不直接写 1、2、3？</a></li>
+            <li><a href="#242-正弦余弦编码">2.4.2 正弦余弦编码</a></li>
           </ol>
         </li>
-        <li><a href="#13-第三步自注意力全文的重中之重">13. 第三步：自注意力，全文的重中之重</a>
+        <li><a href="#25-第三步自注意力全文的重中之重">2.5 第三步：自注意力，全文的重中之重</a>
           <ol>
-            <li><a href="#它要解决什么问题">它要解决什么问题</a></li>
-            <li><a href="#每个词变出三个分身">每个词变出三个分身</a></li>
-            <li><a href="#注意力公式">注意力公式</a></li>
-            <li><a href="#手算一遍">手算一遍</a></li>
-            <li><a href="#整句一起算">整句一起算</a></li>
-            <li><a href="#为什么要除以-dₖ">为什么要除以 √dₖ</a></li>
+            <li><a href="#251-它要解决什么问题">2.5.1 它要解决什么问题</a></li>
+            <li><a href="#252-每个词变出三个分身">2.5.2 每个词变出三个分身</a></li>
+            <li><a href="#253-注意力公式">2.5.3 注意力公式</a></li>
+            <li><a href="#254-手算一遍">2.5.4 手算一遍</a></li>
+            <li><a href="#255-整句一起算">2.5.5 整句一起算</a></li>
+            <li><a href="#256-为什么要除以-dₖ">2.5.6 为什么要除以 √dₖ</a></li>
           </ol>
         </li>
-        <li><a href="#14-多头注意力八个小专家各看一个侧面">14. 多头注意力：八个小专家，各看一个侧面</a></li>
-        <li><a href="#15-残差连接层归一化与前馈网络">15. 残差连接、层归一化与前馈网络</a></li>
-        <li><a href="#16-解码器掩码与去原文里找答案">16. 解码器：掩码，与“去原文里找答案”</a>
+        <li><a href="#26-多头注意力八个小专家各看一个侧面">2.6 多头注意力：八个小专家，各看一个侧面</a></li>
+        <li><a href="#27-残差连接层归一化与前馈网络">2.7 残差连接、层归一化与前馈网络</a></li>
+        <li><a href="#28-解码器掩码与去原文里找答案">2.8 解码器：掩码，与“去原文里找答案”</a>
           <ol>
-            <li><a href="#带掩码的自注意力防作弊">带掩码的自注意力：防作弊</a></li>
-            <li><a href="#编码器-解码器注意力译文拿着问题去原文里找答案">编码器-解码器注意力：译文拿着问题，去原文里找答案</a></li>
+            <li><a href="#281-带掩码的自注意力防作弊">2.8.1 带掩码的自注意力：防作弊</a></li>
+            <li><a href="#282-编码器-解码器注意力译文拿着问题去原文里找答案">2.8.2 编码器-解码器注意力：译文拿着问题，去原文里找答案</a></li>
           </ol>
         </li>
-        <li><a href="#17-最后一步从向量到单词">17. 最后一步：从向量到单词</a>
+        <li><a href="#29-最后一步从向量到单词">2.9 最后一步：从向量到单词</a>
           <ol>
-            <li><a href="#训练和推理的区别">训练和推理的区别</a></li>
+            <li><a href="#291-训练和推理的区别">2.9.1 训练和推理的区别</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#第三部分回到主线为什么这是一场革命">第三部分：回到主线——为什么这是一场革命</a></li>
+    <li><a href="#3-回到主线为什么这是一场革命">3 回到主线：为什么这是一场革命</a></li>
     <li><a href="#一页回顾">一页回顾</a>
       <ol>
         <li><a href="#后来的故事">后来的故事</a></li>
@@ -394,55 +394,55 @@
                 
   <ol>
     <li><a href="#写在前面">写在前面</a></li>
-    <li><a href="#第一部分transformer-出现之前">第一部分：Transformer 出现之前</a>
+    <li><a href="#1-transformer-出现之前">1 Transformer 出现之前</a>
       <ol>
-        <li><a href="#1-先搞清楚任务什么是序列转导">1. 先搞清楚任务：什么是“序列转导”</a></li>
-        <li><a href="#2-机器怎么看文字分词与词嵌入">2. 机器怎么“看”文字：分词与词嵌入</a></li>
-        <li><a href="#3-第一站前馈神经网络一口吞不下句子">3. 第一站：前馈神经网络，一口吞不下句子</a></li>
-        <li><a href="#4-第二站rnn一个词一个词地读">4. 第二站：RNN，一个词一个词地读</a></li>
-        <li><a href="#5-第三站编码器-解码器先读完再写">5. 第三站：编码器-解码器，先读完再写</a></li>
-        <li><a href="#6-第四站注意力机制写每个词时回头看重点">6. 第四站：注意力机制，写每个词时回头看重点</a></li>
-        <li><a href="#7-还剩最后一个坑串行计算">7. 还剩最后一个坑：串行计算</a></li>
-        <li><a href="#8-回到论文introduction-与-background-在说什么">8. 回到论文：Introduction 与 Background 在说什么</a></li>
+        <li><a href="#11-先搞清楚任务什么是序列转导">1.1 先搞清楚任务：什么是“序列转导”</a></li>
+        <li><a href="#12-机器怎么看文字分词与词嵌入">1.2 机器怎么“看”文字：分词与词嵌入</a></li>
+        <li><a href="#13-第一站前馈神经网络一口吞不下句子">1.3 第一站：前馈神经网络，一口吞不下句子</a></li>
+        <li><a href="#14-第二站rnn一个词一个词地读">1.4 第二站：RNN，一个词一个词地读</a></li>
+        <li><a href="#15-第三站编码器-解码器先读完再写">1.5 第三站：编码器-解码器，先读完再写</a></li>
+        <li><a href="#16-第四站注意力机制写每个词时回头看重点">1.6 第四站：注意力机制，写每个词时回头看重点</a></li>
+        <li><a href="#17-还剩最后一个坑串行计算">1.7 还剩最后一个坑：串行计算</a></li>
+        <li><a href="#18-回到论文introduction-与-background-在说什么">1.8 回到论文：Introduction 与 Background 在说什么</a></li>
       </ol>
     </li>
-    <li><a href="#第二部分transformer-是怎么做到的">第二部分：Transformer 是怎么做到的</a>
+    <li><a href="#2-transformer-是怎么做到的">2 Transformer 是怎么做到的</a>
       <ol>
-        <li><a href="#9-核心思路训练时答案本来就在手上">9. 核心思路：训练时，答案本来就在手上</a></li>
-        <li><a href="#10-全景图">10. 全景图</a></li>
-        <li><a href="#11-第一步词嵌入">11. 第一步：词嵌入</a></li>
-        <li><a href="#12-第二步位置编码">12. 第二步：位置编码</a>
+        <li><a href="#21-核心思路训练时答案本来就在手上">2.1 核心思路：训练时，答案本来就在手上</a></li>
+        <li><a href="#22-全景图">2.2 全景图</a></li>
+        <li><a href="#23-第一步词嵌入">2.3 第一步：词嵌入</a></li>
+        <li><a href="#24-第二步位置编码">2.4 第二步：位置编码</a>
           <ol>
-            <li><a href="#为什么不直接写-123">为什么不直接写 1、2、3？</a></li>
-            <li><a href="#正弦余弦编码">正弦余弦编码</a></li>
+            <li><a href="#241-为什么不直接写-123">2.4.1 为什么不直接写 1、2、3？</a></li>
+            <li><a href="#242-正弦余弦编码">2.4.2 正弦余弦编码</a></li>
           </ol>
         </li>
-        <li><a href="#13-第三步自注意力全文的重中之重">13. 第三步：自注意力，全文的重中之重</a>
+        <li><a href="#25-第三步自注意力全文的重中之重">2.5 第三步：自注意力，全文的重中之重</a>
           <ol>
-            <li><a href="#它要解决什么问题">它要解决什么问题</a></li>
-            <li><a href="#每个词变出三个分身">每个词变出三个分身</a></li>
-            <li><a href="#注意力公式">注意力公式</a></li>
-            <li><a href="#手算一遍">手算一遍</a></li>
-            <li><a href="#整句一起算">整句一起算</a></li>
-            <li><a href="#为什么要除以-dₖ">为什么要除以 √dₖ</a></li>
+            <li><a href="#251-它要解决什么问题">2.5.1 它要解决什么问题</a></li>
+            <li><a href="#252-每个词变出三个分身">2.5.2 每个词变出三个分身</a></li>
+            <li><a href="#253-注意力公式">2.5.3 注意力公式</a></li>
+            <li><a href="#254-手算一遍">2.5.4 手算一遍</a></li>
+            <li><a href="#255-整句一起算">2.5.5 整句一起算</a></li>
+            <li><a href="#256-为什么要除以-dₖ">2.5.6 为什么要除以 √dₖ</a></li>
           </ol>
         </li>
-        <li><a href="#14-多头注意力八个小专家各看一个侧面">14. 多头注意力：八个小专家，各看一个侧面</a></li>
-        <li><a href="#15-残差连接层归一化与前馈网络">15. 残差连接、层归一化与前馈网络</a></li>
-        <li><a href="#16-解码器掩码与去原文里找答案">16. 解码器：掩码，与“去原文里找答案”</a>
+        <li><a href="#26-多头注意力八个小专家各看一个侧面">2.6 多头注意力：八个小专家，各看一个侧面</a></li>
+        <li><a href="#27-残差连接层归一化与前馈网络">2.7 残差连接、层归一化与前馈网络</a></li>
+        <li><a href="#28-解码器掩码与去原文里找答案">2.8 解码器：掩码，与“去原文里找答案”</a>
           <ol>
-            <li><a href="#带掩码的自注意力防作弊">带掩码的自注意力：防作弊</a></li>
-            <li><a href="#编码器-解码器注意力译文拿着问题去原文里找答案">编码器-解码器注意力：译文拿着问题，去原文里找答案</a></li>
+            <li><a href="#281-带掩码的自注意力防作弊">2.8.1 带掩码的自注意力：防作弊</a></li>
+            <li><a href="#282-编码器-解码器注意力译文拿着问题去原文里找答案">2.8.2 编码器-解码器注意力：译文拿着问题，去原文里找答案</a></li>
           </ol>
         </li>
-        <li><a href="#17-最后一步从向量到单词">17. 最后一步：从向量到单词</a>
+        <li><a href="#29-最后一步从向量到单词">2.9 最后一步：从向量到单词</a>
           <ol>
-            <li><a href="#训练和推理的区别">训练和推理的区别</a></li>
+            <li><a href="#291-训练和推理的区别">2.9.1 训练和推理的区别</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#第三部分回到主线为什么这是一场革命">第三部分：回到主线——为什么这是一场革命</a></li>
+    <li><a href="#3-回到主线为什么这是一场革命">3 回到主线：为什么这是一场革命</a></li>
     <li><a href="#一页回顾">一页回顾</a>
       <ol>
         <li><a href="#后来的故事">后来的故事</a></li>
@@ -472,8 +472,8 @@
 <p><img alt="从 FNN 到 Transformer 的演进路线" class="gallery-image" data-flex-basis="750px" data-flex-grow="312" height="640" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/01-roadmap.png" srcset="/ai/transformer-paper-guide/images/transformer/01-roadmap_hu_8b51fdb7b38bbbfa.png 800w, /ai/transformer-paper-guide/images/transformer/01-roadmap_hu_d3a941558926ddeb.png 1600w, /ai/transformer-paper-guide/images/transformer/01-roadmap.png 2000w" width="2000"></p>
 <p>上面这张图就是前半篇的地图。每一代模型都解决了上一代的一些问题，又留下新的问题。Transformer 的出现，就是为了填上最后那个坑。</p>
 <hr>
-<h2 id="第一部分transformer-出现之前">第一部分：Transformer 出现之前
-</h2><h3 id="1-先搞清楚任务什么是序列转导">1. 先搞清楚任务：什么是“序列转导”
+<h2 id="1-transformer-出现之前">1 Transformer 出现之前
+</h2><h3 id="11-先搞清楚任务什么是序列转导">1.1 先搞清楚任务：什么是“序列转导”
 </h3><p>论文摘要的第一句话是：</p>
 
     <blockquote>
@@ -490,7 +490,7 @@
 </ol>
 <p>而这篇论文提出的 Transformer，<strong>完全扔掉了 RNN 和 CNN，只靠注意力机制</strong>（仍然保留了编码器-解码器的大框架）。</p>
 <p>要理解这为什么是革命性的，我们得先看看 RNN、编码器-解码器、注意力机制分别是什么，它们各自解决了什么问题，又卡在了哪里。</p>
-<h3 id="2-机器怎么看文字分词与词嵌入">2. 机器怎么“看”文字：分词与词嵌入
+<h3 id="12-机器怎么看文字分词与词嵌入">1.2 机器怎么“看”文字：分词与词嵌入
 </h3><p>在讲任何神经网络之前，有个绕不开的前置步骤：计算机只认数字，文字得先变成数字。</p>
 <p>第一步叫<strong>分词</strong>（tokenization），把句子切成一个个小单元，叫 <strong>token</strong>。初学时你可以把 token 简单理解成“词”。比如“水是有毒的”切成 <code>[&quot;水&quot;, &quot;是&quot;, &quot;有毒&quot;, &quot;的&quot;]</code>。</p>
 <p>第二步叫<strong>词嵌入</strong>（embedding），给每个 token 分配一个向量，也就是一串数字。在 Transformer 里，这个向量有 512 个数，我们说它是“512 维”的。</p>
@@ -499,7 +499,7 @@
 <p>“水”“河流”“瀑布”会聚在一块，“大学生”“论文”“作业”聚在另一块。两个词的向量方向越接近，意思通常也越接近。机器就是靠这种几何关系，来“感知”词语之间的相似性。</p>
 <p>这些向量不是人手工写的，而是在训练中学出来的。早期常用别人训练好的词向量直接拿来用；而在 Transformer 这类模型里，词嵌入表通常和整个模型一起训练、一起调整，效果更好。</p>
 <p>好，有了词向量，我们可以开始往神经网络里喂东西了。</p>
-<h3 id="3-第一站前馈神经网络一口吞不下句子">3. 第一站：前馈神经网络，一口吞不下句子
+<h3 id="13-第一站前馈神经网络一口吞不下句子">1.3 第一站：前馈神经网络，一口吞不下句子
 </h3><p>学机器学习时最先接触的网络，叫<strong>前馈神经网络</strong>（Feedforward Neural Network，FNN）。结构非常简单：输入层 → 隐藏层 → 输出层，数据从左往右流一遍就结束。中间每一层都是“乘一个权重矩阵、再过一个非线性函数”。</p>
 <p>问题在于，FNN 的输入层大小是<strong>固定</strong>的。它像一个形状固定的插槽，只能插进固定长度的向量。可句子有长有短，怎么塞进去？</p>
 <p><img alt="前馈网络处理不了句子的两个原因" class="gallery-image" data-flex-basis="558px" data-flex-grow="232" height="860" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/03-fnn.png" srcset="/ai/transformer-paper-guide/images/transformer/03-fnn_hu_8a0989590e86a558.png 800w, /ai/transformer-paper-guide/images/transformer/03-fnn_hu_a0c2e1acfd371ffc.png 1600w, /ai/transformer-paper-guide/images/transformer/03-fnn.png 2000w" width="2000"></p>
@@ -509,7 +509,7 @@
 <li><strong>首尾拼接</strong>：把 4 个 4 维向量拼成一个 16 维的。可句子一变长，输入层就得跟着变；你总不能为了可能出现的最长句子，准备一个巨大无比的输入层。更要命的是，拼接后整句仍然是“一次性整块”塞进去的，网络并不理解谁先谁后。</li>
 </ul>
 <p>所以 FNN 在序列任务面前有两个硬伤：<strong>不支持不定长的输入，也建模不了词序</strong>。</p>
-<h3 id="4-第二站rnn一个词一个词地读">4. 第二站：RNN，一个词一个词地读
+<h3 id="14-第二站rnn一个词一个词地读">1.4 第二站：RNN，一个词一个词地读
 </h3><p><strong>循环神经网络</strong>（Recurrent Neural Network，RNN）的想法很像人读句子：不是一眼吞下整句，而是一个词一个词地读，边读边记。</p>
 <p>它的结构相对 FNN 改动很小，只是在隐藏层上加了一个“圈”：这一步算出的结果，会作为下一步输入的一部分。把这个圈按时间展开，就是下面这样：</p>
 <p><img alt="RNN 按时间展开" class="gallery-image" data-flex-basis="512px" data-flex-grow="213" height="900" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/04-rnn.png" srcset="/ai/transformer-paper-guide/images/transformer/04-rnn_hu_e0c4263d040d8a2e.png 800w, /ai/transformer-paper-guide/images/transformer/04-rnn_hu_d40c2f0c72cedcac.png 1600w, /ai/transformer-paper-guide/images/transformer/04-rnn.png 1920w" width="1920"></p>
@@ -532,7 +532,7 @@ $$</p>
 <li><strong>支持不定长输入</strong>：句子多长都行，多读几步而已。</li>
 </ul>
 <p>但你应该已经发现一个问题了：输入 4 个词，就输出 4 个词。可翻译哪有这么整齐？“我爱水课”是 4 个字，换个说法翻成 “I really enjoy easy courses” 就是 5 个词。<strong>输入和输出不等长时怎么办？</strong></p>
-<h3 id="5-第三站编码器-解码器先读完再写">5. 第三站：编码器-解码器，先读完再写
+<h3 id="15-第三站编码器-解码器先读完再写">1.5 第三站：编码器-解码器，先读完再写
 </h3><p>2014 年的 Seq2Seq（Sutskever 等人）给出的答案是：把 RNN 拆成两半。</p>
 <p><img alt="编码器-解码器结构" class="gallery-image" data-flex-basis="510px" data-flex-grow="212" height="940" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/05-seq2seq.png" srcset="/ai/transformer-paper-guide/images/transformer/05-seq2seq_hu_9150f368662d4a78.png 800w, /ai/transformer-paper-guide/images/transformer/05-seq2seq_hu_58f8113e954cbdd7.png 1600w, /ai/transformer-paper-guide/images/transformer/05-seq2seq.png 2000w" width="2000"></p>
 <ul>
@@ -544,7 +544,7 @@ $$</p>
 <p>但新问题又来了，而且有两个。</p>
 <p><strong>第一个问题：遗忘。</strong> 整句话无论多长，都得挤进一个固定长度的向量 $C$ 里。而 $C = h_4$ 显然受离它近的词影响更大：“水”和“课”刚读完，印象深刻；“我”要经过好几步传递才到达 $h_4$，每传一步都被稀释一点。句子越长，开头的信息丢得越多。</p>
 <p><strong>第二个问题：不分轻重。</strong> 解码器写每一个词时，看的都是同一个 $C$。可写 “I” 的时候最该关注“我”，写 “easy” 的时候最该关注“水”和“课”。所有词被一视同仁，模型就很容易犯错——比如把“水课”翻成 water courses。</p>
-<h3 id="6-第四站注意力机制写每个词时回头看重点">6. 第四站：注意力机制，写每个词时回头看重点
+<h3 id="16-第四站注意力机制写每个词时回头看重点">1.6 第四站：注意力机制，写每个词时回头看重点
 </h3><p>2014 年，Bahdanau 等人提出了<strong>注意力机制</strong>（Attention）。要注意，注意力机制在 Transformer 之前就已经存在了；Transformer 的创新是“自注意力”，这个后面会讲。</p>
 <p>注意力的想法很朴素：既然解码器每一步关心的重点不同，<strong>那就别给它同一个 $C$ 了，每一步单独配一个</strong>。</p>
 <p>具体做法是，保留编码器每一步的记忆 $h_1, h_2, h_3, h_4$，解码器每写一个词时，都重新给这几个记忆分配一组权重，再加权求和，得到这一步专属的上下文：</p>
@@ -560,7 +560,7 @@ $$</p>
 <li><strong>轻重问题解决了</strong>：每一步都有自己的关注重点。</li>
 </ul>
 <p>到这里，我们已经把论文摘要里“以前的模型”的三个特点全讲完了：基于 RNN，采用编码器-解码器结构，用注意力机制连接编码器和解码器。</p>
-<h3 id="7-还剩最后一个坑串行计算">7. 还剩最后一个坑：串行计算
+<h3 id="17-还剩最后一个坑串行计算">1.7 还剩最后一个坑：串行计算
 </h3><p>注意力机制让翻译质量提升了一大截，但它是“装”在 RNN 上的，RNN 的一个根本缺陷还在：<strong>它必须排队计算</strong>。</p>
 <p><img alt="RNN 必须排队，Transformer 训练时可以同时开工" class="gallery-image" data-flex-basis="510px" data-flex-grow="212" height="940" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/07-serial-vs-parallel.png" srcset="/ai/transformer-paper-guide/images/transformer/07-serial-vs-parallel_hu_d55ce88b3ac62d65.png 800w, /ai/transformer-paper-guide/images/transformer/07-serial-vs-parallel_hu_82c9b636e2fb1b56.png 1600w, /ai/transformer-paper-guide/images/transformer/07-serial-vs-parallel.png 2000w" width="2000"></p>
 <p>想得到 $h_4$，必须先有 $h_3$；想得到 $h_3$，必须先有 $h_2$……每一步都依赖上一步的结果。解码也一样，要生成 “easy”，必须等 “I love” 先生成完。</p>
@@ -636,7 +636,7 @@ $$</p>
 	</tbody>
 </table></div>
 <p>最后一行，就是 Transformer 要解决的问题。</p>
-<h3 id="8-回到论文introduction-与-background-在说什么">8. 回到论文：Introduction 与 Background 在说什么
+<h3 id="18-回到论文introduction-与-background-在说什么">1.8 回到论文：Introduction 与 Background 在说什么
 </h3><p>有了上面的铺垫，论文前两节就很好读了。它的逻辑是这样的：</p>
 <p><strong>Introduction</strong> 先说 RNN 及其变体（LSTM、GRU，都属于 RNN 家族）是序列任务的主流方法；然后指出它们的根本局限是“递归计算导致训练无法并行”；接着说注意力机制已经成了好模型的标配，能不管距离远近地捕捉依赖关系——<strong>但在几乎所有情况下，注意力都是和 RNN 一起用的</strong>，只是一个增强件，没有动摇“顺序计算”这个地基。最后亮出本文的方案：Transformer 完全抛弃循环结构，只靠注意力来建立输入和输出之间的全局依赖。</p>
 <p><strong>Background</strong> 补充了一些相关尝试。为了解决顺序计算的问题，有人用 CNN 替代 RNN（比如 ConvS2S、ByteNet），CNN 可以并行算所有位置。但 CNN 每次只看一个小窗口，两个离得远的词要建立联系，需要叠很多层才能“传”过去，所需的操作数随距离增长（ConvS2S 是线性增长，ByteNet 是对数增长）。结果是——<strong>远距离依赖又难学了</strong>，好不容易解决的问题又被捞了回来。Transformer 则把任意两个位置之间的操作数降到了常数。</p>
@@ -648,14 +648,14 @@ $$</p>
     </blockquote>
 <p>Transformer 是第一个<strong>完全</strong>依靠自注意力、不使用 RNN 或卷积的序列转导模型。</p>
 <hr>
-<h2 id="第二部分transformer-是怎么做到的">第二部分：Transformer 是怎么做到的
-</h2><h3 id="9-核心思路训练时答案本来就在手上">9. 核心思路：训练时，答案本来就在手上
+<h2 id="2-transformer-是怎么做到的">2 Transformer 是怎么做到的
+</h2><h3 id="21-核心思路训练时答案本来就在手上">2.1 核心思路：训练时，答案本来就在手上
 </h3><p>在看那张让人“有点绝望”的架构图之前，先想清楚一件事：<strong>RNN 为什么非要排队？</strong></p>
 <p>因为它假设“后面的东西还不知道”。可在<strong>训练</strong>的时候，事情并不是这样的。训练数据是成对的：“我爱水课”是输入，“I love easy courses”是标准答案，两者从一开始就<strong>完整地</strong>摆在我们面前。原文的每个词都在，答案的每个词也都在，谁也没必要等谁。</p>
 <p>既然如此，Transformer 换了一种做法：</p>
 <p><strong>编码时</strong>，不再一个个读。每个词都直接“环顾”整句话，把其他所有词的信息吸收到自己身上，形成一个“带上下文的新向量”。四个词同时做这件事，互不等待。</p>
 <p><strong>解码时</strong>，同样把整句答案一次性给模型。要预测 “easy” 时，让它看到 “I love” 和原文的编码结果，但<strong>把 “easy” 及后面的词遮住</strong>，不许偷看。每个位置都这样设置，就能让所有位置的预测同时进行。</p>
-<p>这里要强调：这种“同时进行”说的是<strong>训练</strong>。等模型训练好、真正拿来翻译一句新话时，答案是不知道的，还是只能一个词一个词地生成（第 17 节会细讲）。但训练恰恰是最耗算力的环节——大模型要在海量文本上训练，训练能并行，才让“堆数据、堆算力”这条路走得通。</p>
+<p>这里要强调：这种“同时进行”说的是<strong>训练</strong>。等模型训练好、真正拿来翻译一句新话时，答案是不知道的，还是只能一个词一个词地生成（第 2.9 节会细讲）。但训练恰恰是最耗算力的环节——大模型要在海量文本上训练，训练能并行，才让“堆数据、堆算力”这条路走得通。</p>
 <p>还有一个代价：不再按顺序读，词序信息就没了，所以需要额外把“位置”编码进去。</p>
 <p>于是，Transformer 要给每个词编码三样东西：</p>
 <ol>
@@ -664,28 +664,28 @@ $$</p>
 <li><strong>这个词在当前上下文里的含义</strong>——自注意力。</li>
 </ol>
 <p>带着这个思路，我们来看全景图。</p>
-<h3 id="10-全景图">10. 全景图
+<h3 id="22-全景图">2.2 全景图
 </h3><p><img alt="Transformer 全景图" class="gallery-image" data-flex-basis="258px" data-flex-grow="107" height="1860" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/08-architecture.png" srcset="/ai/transformer-paper-guide/images/transformer/08-architecture_hu_4e1bf15f89e21fb.png 800w, /ai/transformer-paper-guide/images/transformer/08-architecture_hu_b74cf5a17235d32.png 1600w, /ai/transformer-paper-guide/images/transformer/08-architecture.png 2000w" width="2000"></p>
 <p>（这是按论文 Figure 1 重画的中文版。）</p>
 <p>左边是<strong>编码器</strong>，读原文“我爱水课”；右边是<strong>解码器</strong>，读右移一位的答案“<code>&lt;s&gt;</code> I love easy”（<code>&lt;s&gt;</code> 是“开始”标记），输出下一个词的概率。</p>
 <p>图看着复杂，其实新东西只有几块：</p>
 <ul>
 <li><strong>橙色</strong>：注意力模块，重中之重。编码器里有一个“多头自注意力”；解码器里有两个，一个“带掩码的多头自注意力”，一个“编码器-解码器注意力”。</li>
-<li><strong>紫色</strong>：前馈网络，就是第 3 节那个最朴素的 FNN。</li>
+<li><strong>紫色</strong>：前馈网络，就是第 1.3 节那个最朴素的 FNN。</li>
 <li><strong>黄色</strong>：残差连接 + 层归一化，深度学习的常规操作，让深层网络好训练。</li>
 <li><strong>粉色和青色</strong>：词嵌入和位置编码，是数据的入口。</li>
 </ul>
 <p>框旁边的 “× N” 表示这一整块会<strong>重复堆叠 N 次</strong>，论文里 N = 6。为什么能随便叠？因为每一块的输入和输出形状完全一样（每个词都是 512 维），上一块的输出可以原封不动地当下一块的输入，想叠几层都行。</p>
 <p>接下来，我们跟着“我爱水课”走一遍完整的训练流程。</p>
-<h3 id="11-第一步词嵌入">11. 第一步：词嵌入
+<h3 id="23-第一步词嵌入">2.3 第一步：词嵌入
 </h3><p>“我爱水课”先经过词嵌入，每个词变成一个 512 维向量。四个词摞在一起，就是一个 4 × 512 的矩阵（4 行，每行一个词）。</p>
-<p>这一步第 2 节已经讲过，不再重复。只补一个论文里的细节：Transformer 会把词嵌入向量乘以 $\sqrt{d_{model}} = \sqrt{512}$，而且编码器输入、解码器输入、以及最后输出层的线性变换，三者共享同一份权重矩阵。</p>
-<h3 id="12-第二步位置编码">12. 第二步：位置编码
+<p>这一步第 1.2 节已经讲过，不再重复。只补一个论文里的细节：Transformer 会把词嵌入向量乘以 $\sqrt{d_{model}} = \sqrt{512}$，而且编码器输入、解码器输入、以及最后输出层的线性变换，三者共享同一份权重矩阵。</p>
+<h3 id="24-第二步位置编码">2.4 第二步：位置编码
 </h3><p>自注意力是“所有词同时看所有词”，这对计算来说是好事，但有一个副作用：<strong>它对顺序完全不敏感</strong>。如果你把“我爱水课”打乱成“课水爱我”，在没有位置信息的情况下，每个词算出来的结果和原来一模一样（只是换了个排列）。所以必须把位置信息显式地加进去。</p>
-<h4 id="为什么不直接写-123">为什么不直接写 1、2、3？
+<h4 id="241-为什么不直接写-123">2.4.1 为什么不直接写 1、2、3？
 </h4><p>最自然的想法是给每个词附一个编号：第 1 个、第 2 个、第 3 个……但单独一个数字有几个麻烦：数值会随句子变长而无限增大，和词向量里那些量级很小的数字混在一起很不协调；模型训练时没见过的长度（比如第 1000 个位置），它就不知道该怎么处理；而且一个孤零零的标量，很难让模型通过向量运算去理解“第 3 个词和第 7 个词隔了多远”。</p>
 <p>所以论文的做法是：<strong>给每个位置也生成一个 512 维的向量</strong>，然后直接加到词向量上。</p>
-<h4 id="正弦余弦编码">正弦余弦编码
+<h4 id="242-正弦余弦编码">2.4.2 正弦余弦编码
 </h4><p>这个位置向量是用正弦、余弦函数算出来的：</p>
 <p>$$
 PE_{(pos,,2i)} = \sin!\left(\frac{pos}{10000^{2i/d_{model}}}\right), \qquad
@@ -743,8 +743,8 @@ $$</p>
 x_{\text{水}} = \text{Embedding}(\text{水}) + PE_{(2)}
 $$</p>
 <p>就像给每个词贴了一个位置标签。现在，每个词的向量里既有“我是谁”，也有“我在哪”。还差最后一样：“我在这句话里是什么意思”。</p>
-<h3 id="13-第三步自注意力全文的重中之重">13. 第三步：自注意力，全文的重中之重
-</h3><h4 id="它要解决什么问题">它要解决什么问题
+<h3 id="25-第三步自注意力全文的重中之重">2.5 第三步：自注意力，全文的重中之重
+</h3><h4 id="251-它要解决什么问题">2.5.1 它要解决什么问题
 </h4><p>回到词嵌入的那张地图。在词嵌入表里，“水”只有一个固定的位置——不管出现在哪句话里，查表得到的都是同一个向量。这显然不合理：</p>
 <ul>
 <li>“这西瓜水真多”里的“水”，应该往“水果”“水分”那边偏一点；</li>
@@ -753,7 +753,7 @@ $$</p>
 <p><img alt="自注意力要做的事：让同一个“水”在不同句子里变成不同的向量" class="gallery-image" data-flex-basis="459px" data-flex-grow="191" height="940" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/10-context-shift.png" srcset="/ai/transformer-paper-guide/images/transformer/10-context-shift_hu_66f55f30f2b6c7dc.png 800w, /ai/transformer-paper-guide/images/transformer/10-context-shift_hu_11703b6d050ef348.png 1600w, /ai/transformer-paper-guide/images/transformer/10-context-shift.png 1800w" width="1800"></p>
 <p><strong>自注意力的任务，就是根据上下文给每个词的向量“挪个位置”</strong>。挪向哪里、挪多远，由句子里的其他词决定。挪完之后，两个“水”就不再是同一个向量，机器才算真正区分开了它们。</p>
 <p>那具体怎么挪？答案是 Query、Key、Value 这一套。</p>
-<h4 id="每个词变出三个分身">每个词变出三个分身
+<h4 id="252-每个词变出三个分身">2.5.2 每个词变出三个分身
 </h4><p><img alt="每个词变出 Query、Key、Value 三个分身" class="gallery-image" data-flex-basis="626px" data-flex-grow="261" height="720" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/11-qkv.png" srcset="/ai/transformer-paper-guide/images/transformer/11-qkv_hu_3cacf135e79ef522.png 800w, /ai/transformer-paper-guide/images/transformer/11-qkv_hu_ccec734ebb6c23a.png 1600w, /ai/transformer-paper-guide/images/transformer/11-qkv.png 1880w" width="1880"></p>
 <p>把“水”的向量 $x_{\text{水}}$（已经加过位置编码）分别乘以三个不同的权重矩阵 $W^Q$、$W^K$、$W^V$，得到三个新向量：</p>
 <ul>
@@ -764,7 +764,7 @@ $$</p>
 <p>一个好用的类比是图书馆检索：Query 是你在搜索框里输入的关键词，Key 是每本书的标签，Value 是书的内容。你用关键词和所有标签比对，越匹配的书，你读得越多。</p>
 <p>当然，“附近有名词吗”只是帮助理解的拟人化说法。真实模型里，$W^Q$、$W^K$、$W^V$ 是训练出来的参数，每个维度具体在“问”什么，人类往往说不清。但效果上，它们确实学会了提出有用的问题、贴上有用的标签。</p>
 <p>不只是“水”，句子里每个词都会得到自己的 q、k、v。而且这一步不用一个个算：把整句的 4 × 512 矩阵 $X$ 乘一次 $W^Q$，就同时得到了所有词的 Query，K 和 V 同理。这就是“并行”二字落到实处的样子——就是几次大矩阵乘法。</p>
-<h4 id="注意力公式">注意力公式
+<h4 id="253-注意力公式">2.5.3 注意力公式
 </h4><p>拿到 Q、K、V 之后，计算就是论文里最有名的那个公式，<strong>缩放点积注意力</strong>（Scaled Dot-Product Attention）：</p>
 <p>$$
 \text{Attention}(Q, K, V) = \text{softmax}!\left(\frac{QK^{\top}}{\sqrt{d_k}}\right)V
@@ -776,7 +776,7 @@ $$</p>
 <li><strong>归一化</strong>：过一个 softmax，把分数变成一组<strong>非负、加起来等于 1</strong> 的权重；</li>
 <li><strong>加权求和</strong>：用这组权重给所有词的 Value 做加权平均，得到这个词的新向量。</li>
 </ol>
-<h4 id="手算一遍">手算一遍
+<h4 id="254-手算一遍">2.5.4 手算一遍
 </h4><p>光看公式不够直观，我们拿“水”来手算一遍。为了能用手算，把向量缩到只有 4 维（所以 $d_k = 4$，$\sqrt{d_k} = 2$），数字都是为了演示编出来的：</p>
 <p><img alt="手算一遍：“水”是怎么吸收上下文的" class="gallery-image" data-flex-basis="392px" data-flex-grow="163" height="1200" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/12-attention-steps.png" srcset="/ai/transformer-paper-guide/images/transformer/12-attention-steps_hu_7c53dab5a1ce9b85.png 800w, /ai/transformer-paper-guide/images/transformer/12-attention-steps_hu_cf516c0c6dbfff55.png 1600w, /ai/transformer-paper-guide/images/transformer/12-attention-steps.png 1960w" width="1960"></p>
 <p>“水”的 Query 是 $q_{\text{水}} = [1, 0, 1, 0]$，四个词的 Key 分别是：</p>
@@ -814,18 +814,18 @@ $$</p>
 <p>$$
 \text{新的“水”} = 0.09,v_{\text{我}} + 0.09,v_{\text{爱}} + 0.41,v_{\text{水}} + 0.41,v_{\text{课}}
 $$</p>
-<p>新的“水”向量里，有四成多的信息来自“课”。它已经不是孤零零的 water，而是带着“课”的语境的那个“水”。这和第 6 节注意力机制的加权平均是同一个思想，只不过这次是<strong>句子内部的词互相关注</strong>，所以叫“自”注意力（self-attention）：Q、K、V 全都来自同一个句子自己。</p>
-<h4 id="整句一起算">整句一起算
+<p>新的“水”向量里，有四成多的信息来自“课”。它已经不是孤零零的 water，而是带着“课”的语境的那个“水”。这和第 1.6 节注意力机制的加权平均是同一个思想，只不过这次是<strong>句子内部的词互相关注</strong>，所以叫“自”注意力（self-attention）：Q、K、V 全都来自同一个句子自己。</p>
+<h4 id="255-整句一起算">2.5.5 整句一起算
 </h4><p>上面只算了“水”这一行。实际计算中，四个词是同时算的：$QK^\top$ 一次就得到一张 4 × 4 的分数表，softmax 按行归一化，再乘以 $V$，所有词的新向量一起出炉。</p>
 <p><img alt="一张 4×4 的注意力权重表" class="gallery-image" data-flex-basis="295px" data-flex-grow="123" height="1040" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/13-attention-matrix.png" srcset="/ai/transformer-paper-guide/images/transformer/13-attention-matrix_hu_843720c2eb0fadf1.png 800w, /ai/transformer-paper-guide/images/transformer/13-attention-matrix.png 1280w" width="1280"></p>
 <p>每一行是一个词“看”所有词的比例。比如“我”这一行，最关注“爱”（0.61），可以理解为“我”在找它的动作；“课”这一行，最关注“水”（0.39），可以理解为“课”在找修饰它的词。这张表还有一个额外的好处：它可以直接画出来看，帮助人理解模型“在想什么”，论文第 4 节专门提到了这一点。</p>
-<h4 id="为什么要除以-dₖ">为什么要除以 √dₖ
+<h4 id="256-为什么要除以-dₖ">2.5.6 为什么要除以 √dₖ
 </h4><p>这是论文里专门解释的一个细节，也是面试常考题。</p>
 <p>假设 q 和 k 的每个分量都是均值 0、方差 1 的随机数，那么它们的点积 $q \cdot k = \sum_{i=1}^{d_k} q_i k_i$ 是 $d_k$ 个随机数之和，均值为 0，<strong>方差为 $d_k$</strong>。$d_k$ 越大，点积的数值就越“野”。在 64 维时，点积的标准差约为 8；在 512 维时约为 22.6。</p>
 <p>数值太大，softmax 就会“饱和”。举个例子，三个分数 $[22, 11, 5]$ 过 softmax，结果约是 $[0.99998,\ 0.00002,\ 0.0]$：几乎所有权重都压在第一个上，其他位置几乎被无视。更糟的是，这时 softmax 的梯度极小，模型很难通过训练去调整它——像是一个开关卡死在一端。</p>
 <p>除以 $\sqrt{d_k}$ 之后，点积的方差被拉回 1。同样的分数除以 $\sqrt{512} \approx 22.6$，softmax 的结果是 $[0.48,\ 0.29,\ 0.23]$，权重分布得柔和多了，训练也更顺畅。</p>
 <p>论文还对比了另一种常用的“加性注意力”（additive attention，Bahdanau 用的那种，拿一个小神经网络来算分数）。两者理论复杂度差不多，但点积注意力可以直接用高度优化的矩阵乘法实现，<strong>更快也更省内存</strong>。缩放这一步，就是为了在 $d_k$ 较大时补上点积注意力的短板。</p>
-<h3 id="14-多头注意力八个小专家各看一个侧面">14. 多头注意力：八个小专家，各看一个侧面
+<h3 id="26-多头注意力八个小专家各看一个侧面">2.6 多头注意力：八个小专家，各看一个侧面
 </h3><p>前面讲的是“单头”注意力：$W^Q$、$W^K$、$W^V$ 都是 512 × 512，“我爱水课”的 4 × 512 矩阵乘过去，Q、K、V 都还是 4 × 512，注意力的输出也是 4 × 512。</p>
 <p>而 Transformer 实际用的是<strong>多头注意力</strong>（Multi-Head Attention）：</p>
 <p><img alt="多头注意力" class="gallery-image" data-flex-basis="413px" data-flex-grow="172" height="1160" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/14-multi-head.png" srcset="/ai/transformer-paper-guide/images/transformer/14-multi-head_hu_35a29a9125eb50b4.png 800w, /ai/transformer-paper-guide/images/transformer/14-multi-head_hu_fe08aa6d7bf817bb.png 1600w, /ai/transformer-paper-guide/images/transformer/14-multi-head.png 2000w" width="2000"></p>
@@ -848,7 +848,7 @@ $$</p>
 8 \times (512 \times 64 \times 3) = 786{,}432 = 1 \times (512 \times 512 \times 3)
 $$</p>
 <p>8 个 64 维的小头，参数量和计算量跟 1 个 512 维的大头<strong>完全一样</strong>。如果每个头都用 512 维，计算量就要翻 8 倍。拆成 8 × 64，等于不花额外成本，白得了 8 个视角。至于为什么偏偏是 512、8、64，这些都是超参数，是作者试出来效果好的取值，换成别的也能训练。</p>
-<h3 id="15-残差连接层归一化与前馈网络">15. 残差连接、层归一化与前馈网络
+<h3 id="27-残差连接层归一化与前馈网络">2.7 残差连接、层归一化与前馈网络
 </h3><p>多头注意力之后，紧跟着一个“<strong>Add &amp; Norm</strong>”，然后是前馈网络，再一个 “Add &amp; Norm”。</p>
 <p><img alt="残差+归一化，以及逐位置前馈网络" class="gallery-image" data-flex-basis="558px" data-flex-grow="232" height="860" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/15-addnorm-ffn.png" srcset="/ai/transformer-paper-guide/images/transformer/15-addnorm-ffn_hu_f175ebe367c5fedf.png 800w, /ai/transformer-paper-guide/images/transformer/15-addnorm-ffn_hu_c312371b947df8d2.png 1600w, /ai/transformer-paper-guide/images/transformer/15-addnorm-ffn.png 2000w" width="2000"></p>
 <p><strong>残差连接</strong>（Residual Connection）就是图里那条“抄近路”的虚线：把子层的输入 $x$ 原样抄一份，直接加到子层的输出上。</p>
@@ -857,29 +857,29 @@ $$</p>
 $$</p>
 <p>为什么要这样？设想某个子层学得很差，把输入扭曲得面目全非，后面的层再怎么努力，拿到的也只是一堆被搅乱的东西。有了残差连接，不管这个子层学得如何，原始信息都有一条保底通道能继续往下传。子层只需要学“在原来基础上补充点什么”，而不是“从零重建一切”。这在网络很深时尤其关键，Transformer 的编码器和解码器加起来有 30 个子层，靠的就是它才能稳定训练。</p>
 <p><strong>层归一化</strong>（Layer Normalization）则是把每个词向量的数值重新调整到均值 0、方差 1 附近，让数值保持稳定，方便训练。</p>
-<p><strong>前馈网络</strong>（Feed-Forward Network）就是第 3 节那个最朴素的两层网络：</p>
+<p><strong>前馈网络</strong>（Feed-Forward Network）就是第 1.3 节那个最朴素的两层网络：</p>
 <p>$$
 \text{FFN}(x) = \max(0,\ xW_1 + b_1),W_2 + b_2
 $$</p>
 <p>先把 512 维撑大到 2048 维，过一个 ReLU（负数变 0，正数不变），再压回 512 维。论文强调它是“逐位置”（position-wise）的：<strong>每个词单独、各自</strong>过一遍同一个网络，词与词之间在这里不交流。</p>
 <p>可以这么分工理解：注意力负责“词与词之间交流信息”，前馈网络负责“每个词把收集到的信息自己消化一下”，并引入更多的非线性和参数，增强模型的表达能力。</p>
 <p>经过“注意力 → Add &amp; Norm → FFN → Add &amp; Norm”，形状依然是 4 × 512，于是可以再送进下一层。重复 6 次，编码器的工作就完成了：最终得到的 4 × 512 矩阵，每一行都是一个融合了<strong>词义、位置和整句上下文</strong>的向量。</p>
-<h3 id="16-解码器掩码与去原文里找答案">16. 解码器：掩码，与“去原文里找答案”
+<h3 id="28-解码器掩码与去原文里找答案">2.8 解码器：掩码，与“去原文里找答案”
 </h3><p>解码器的流程和编码器大同小异：答案 “<code>&lt;s&gt;</code> I love easy” 进来，过词嵌入、位置编码，然后进入 6 层堆叠的模块。区别在于两处。</p>
-<h4 id="带掩码的自注意力防作弊">带掩码的自注意力：防作弊
+<h4 id="281-带掩码的自注意力防作弊">2.8.1 带掩码的自注意力：防作弊
 </h4><p>训练时我们把整句答案一次性给了解码器。如果不加限制，预测 “easy” 的时候，模型直接看一眼输入里的 “easy” 就能答对——这是作弊，学不到任何东西。而且在真正使用时，后面的词还没生成，根本没得看。</p>
 <p>所以解码器的第一个自注意力加了<strong>掩码</strong>（mask）：</p>
 <p><img alt="掩码：训练时把未来的答案遮住" class="gallery-image" data-flex-basis="382px" data-flex-grow="159" height="1080" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/16-mask.png" srcset="/ai/transformer-paper-guide/images/transformer/16-mask_hu_bf422985c85a13f.png 800w, /ai/transformer-paper-guide/images/transformer/16-mask_hu_9b5b12ccc1b17885.png 1600w, /ai/transformer-paper-guide/images/transformer/16-mask.png 1720w" width="1720"></p>
 <p>解码器的输入是整句答案<strong>右移一位</strong>（前面补一个开始符 <code>&lt;s&gt;</code>），每个位置的任务是预测下一个词。在注意力的分数表里，第 $i$ 行只允许看第 1 到第 $i$ 列，右上角的格子全部遮掉。站在 “love” 的位置预测 “easy” 时，它只看得到 <code>&lt;s&gt;</code>、I、love。</p>
 <p>具体实现是：在 softmax <strong>之前</strong>，把被遮住的位置的分数设为 $-\infty$。因为 $e^{-\infty} = 0$，softmax 之后这些位置的权重恰好是 0，也不影响其他位置的权重加起来等于 1。（注意不是把分数设为 0：分数为 0 时 $e^0 = 1$，那个位置照样能分到权重。）</p>
-<h4 id="编码器-解码器注意力译文拿着问题去原文里找答案">编码器-解码器注意力：译文拿着问题，去原文里找答案
+<h4 id="282-编码器-解码器注意力译文拿着问题去原文里找答案">2.8.2 编码器-解码器注意力：译文拿着问题，去原文里找答案
 </h4><p>解码器每一层的第二个注意力模块，和前面的“自”注意力不同，它的 Q 和 K、V 来自两个地方：</p>
 <p><img alt="编码器-解码器注意力" class="gallery-image" data-flex-basis="534px" data-flex-grow="222" height="880" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/17-cross-attention.png" srcset="/ai/transformer-paper-guide/images/transformer/17-cross-attention_hu_f7e5ec37d180ec0c.png 800w, /ai/transformer-paper-guide/images/transformer/17-cross-attention_hu_757de4bba5f8fc8b.png 1600w, /ai/transformer-paper-guide/images/transformer/17-cross-attention.png 1960w" width="1960"></p>
 <ul>
 <li><strong>Query</strong> 来自解码器自己（下面那层的输出），可以理解为：“我已经写了 I love，下一个词该看原文的哪里？”</li>
 <li><strong>Key 和 Value</strong> 来自编码器的最终输出，也就是“已经读懂了的原文”。</li>
 </ul>
-<p>计算方式还是那个公式，只是“提问的人”和“被问的人”分属两个句子。这一步就是第 6 节那个经典注意力机制在 Transformer 里的化身：译文的每个位置，都去原文里找自己最该关注的部分。这一层在论文里叫 “encoder-decoder attention”，现在也常叫交叉注意力（cross-attention）。</p>
+<p>计算方式还是那个公式，只是“提问的人”和“被问的人”分属两个句子。这一步就是第 1.6 节那个经典注意力机制在 Transformer 里的化身：译文的每个位置，都去原文里找自己最该关注的部分。这一层在论文里叫 “encoder-decoder attention”，现在也常叫交叉注意力（cross-attention）。</p>
 <p>至此，Transformer 中多头注意力的<strong>三种用法</strong>都出场了（论文 3.2.3 节）：</p>
 <ol>
 <li><strong>编码器里的自注意力</strong>：原文的每个词看原文的所有词；</li>
@@ -887,20 +887,20 @@ $$</p>
 <li><strong>编码器-解码器注意力</strong>：译文的每个词去看原文的所有词。</li>
 </ol>
 <p>之后照例是 Add &amp; Norm、前馈网络、Add &amp; Norm，重复 6 层。</p>
-<h3 id="17-最后一步从向量到单词">17. 最后一步：从向量到单词
+<h3 id="29-最后一步从向量到单词">2.9 最后一步：从向量到单词
 </h3><p>解码器最终输出的，仍然是每个位置一个 512 维向量。它代表“模型认为这个位置该填的词”的语义，但还不是一个具体的词。最后还要两步：</p>
 <p><img alt="线性层 + softmax：从 512 维向量到下一个词" class="gallery-image" data-flex-basis="576px" data-flex-grow="240" height="800" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/18-output.png" srcset="/ai/transformer-paper-guide/images/transformer/18-output_hu_2bb665601eff4d84.png 800w, /ai/transformer-paper-guide/images/transformer/18-output_hu_485362d8b68f835c.png 1600w, /ai/transformer-paper-guide/images/transformer/18-output.png 1920w" width="1920"></p>
 <p><strong>线性层</strong>做一次维度变换，把 512 维映射到“词表大小”那么多维。假设词表里有 3 万个词，就得到一个 3 万维的向量，每一维是对应那个词的得分。（论文的英德翻译实验用的是约 37000 个子词单元的共享词表。）</p>
 <p><strong>softmax</strong> 再把这些得分变成概率。得分本身没有统一的尺度，10 分算高还是算低，取决于其他词的分数；变成概率后，所有词的可能性加起来等于 1，一目了然。</p>
 <p>刚开始训练时，模型在 “easy” 这个位置可能给出“water 的概率 0.8，easy 的概率 0.1”。但标准答案是 easy，于是<strong>损失函数</strong>会衡量预测和答案之间的差距，再通过反向传播去调整模型里所有的参数——词嵌入表、$W^Q$、$W^K$、$W^V$、$W^O$、前馈网络的权重……让下一次 easy 的概率更高一点。成千上万次之后，模型就学会了：“水”后面跟着“课”时，它是 easy，不是 water。</p>
-<h4 id="训练和推理的区别">训练和推理的区别
-</h4><p>这里正好把第 9 节埋的伏笔收回来：</p>
+<h4 id="291-训练和推理的区别">2.9.1 训练和推理的区别
+</h4><p>这里正好把第 2.1 节埋的伏笔收回来：</p>
 <p><img alt="训练时一次算完；推理时仍要一个词一个词地写" class="gallery-image" data-flex-basis="461px" data-flex-grow="192" height="1040" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/ai/transformer-paper-guide/images/transformer/19-train-vs-infer.png" srcset="/ai/transformer-paper-guide/images/transformer/19-train-vs-infer_hu_53b7fef44533140f.png 800w, /ai/transformer-paper-guide/images/transformer/19-train-vs-infer_hu_4c9fbd8017d23c5e.png 1600w, /ai/transformer-paper-guide/images/transformer/19-train-vs-infer.png 2000w" width="2000"></p>
 <p><strong>训练时</strong>，答案在手，配合掩码，5 个位置的预测在一次前向计算里同时完成、同时算误差。</p>
 <p><strong>推理时</strong>（训练好之后真正拿来用），没有答案。只能先输入 <code>&lt;s&gt;</code>，让模型预测出 “I”；把 “I” 接到输入后面，再预测出 “love”；再接上，预测 “easy”……直到模型输出结束符 <code>&lt;eos&gt;</code>。这种“把自己的输出当成下一步输入”的方式叫<strong>自回归</strong>（auto-regressive）。编码器只需要在开头把原文算一次，之后每一步只跑解码器。</p>
 <p>你在用 ChatGPT 或 Claude 时，看到回答是一个字一个字“蹦”出来的，原因正在于此。</p>
 <hr>
-<h2 id="第三部分回到主线为什么这是一场革命">第三部分：回到主线——为什么这是一场革命
+<h2 id="3-回到主线为什么这是一场革命">3 回到主线：为什么这是一场革命
 </h2><p>现在终于可以回答开头的问题了。论文第 4 节 “Why Self-Attention” 从三个角度，把自注意力和循环层、卷积层做了对比：</p>
 <div class="table-wrapper"><table>
 	<thead>
